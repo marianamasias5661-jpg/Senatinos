@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SENA360 · Senatinos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+:root {
+  --blue:    #005AA9;
+  --blue-d:  #003B70;
+  --blue-t:  #0078D4;
+  --blue-lt: #EBF4FF;
+  --blue-md: #D0E8FF;
+  --white:   #FFFFFF;
+  --g50:  #F5F7FA;
+  --g100: #EEF0F4;
+  --g200: #DDE1E9;
+  --g300: #B8BFC9;
+  --g400: #8892A4;
+  --g500: #5C6678;
+  --g700: #2E3748;
+  --g900: #111827;
+  --ok:  #0F7B4B; --ok-lt: #E8F7F0;
+  --wa:  #C47800; --wa-lt: #FEF3E2;
+  --er:  #C92B2B; --er-lt: #FEE8E8;
+  --r: 10px; --r2: 6px; --r3: 14px; --r4: 20px;
+  --s0: 0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --s1: 0 2px 8px rgba(0,0,0,.07),0 1px 3px rgba(0,0,0,.05);
+  --s2: 0 4px 16px rgba(0,0,0,.09),0 2px 6px rgba(0,0,0,.06);
+  --s3: 0 8px 32px rgba(0,0,0,.1),0 4px 12px rgba(0,0,0,.07);
+  --sw: 240px; --th: 60px;
+  --fd: 'Syne',sans-serif; --fb: 'Plus Jakarta Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:14px;scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--g50);color:var(--g700);min-height:100vh;-webkit-font-smoothing:antialiased}
+img{display:block} a{text-decoration:none;color:inherit} button{font-family:var(--fb);cursor:pointer;border:none}
+
+/* ── TOPBAR ── */
+.topbar{position:fixed;top:0;left:0;right:0;height:var(--th);background:var(--white);border-bottom:1px solid var(--g200);display:flex;align-items:center;padding:0 20px;z-index:100;box-shadow:var(--s0)}
+.tb-logo{display:flex;align-items:center;gap:10px;width:var(--sw);padding-right:20px;flex-shrink:0}
+.logo-em{width:36px;height:36px;flex-shrink:0}
+.lw-main{font-family:var(--fd);font-size:18px;font-weight:800;letter-spacing:2px;color:var(--blue-d);line-height:1}
+.lw-sub{font-size:9px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--g400);line-height:1}
+.tb-sp{flex:1}
+.tb-r{display:flex;align-items:center;gap:8px}
+.tb-mb{display:none;width:36px;height:36px;background:var(--g50);border:1px solid var(--g200);border-radius:var(--r2);align-items:center;justify-content:center;color:var(--g500);font-size:18px;transition:.15s}
+.tb-mb:hover{background:var(--blue-lt);color:var(--blue)}
+.tb-ic{width:36px;height:36px;border-radius:var(--r2);background:var(--g50);border:1px solid var(--g200);display:flex;align-items:center;justify-content:center;color:var(--g500);font-size:16px;cursor:pointer;transition:.15s;position:relative}
+.tb-ic:hover{background:var(--blue-lt);color:var(--blue)}
+.nd{position:absolute;top:8px;right:8px;width:5px;height:5px;border-radius:50%;background:var(--er);border:1.5px solid var(--white)}
+.up{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;background:var(--g50);border:1px solid var(--g200);border-radius:24px;cursor:pointer;transition:.15s}
+.up:hover{border-color:var(--blue)}
+.ua{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--blue-d),var(--blue-t));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.un{font-size:12px;font-weight:600;color:var(--g700)}
+
+/* ── LAYOUT ── */
+.wrap{display:flex;padding-top:var(--th);min-height:100vh}
+.sb-ov{display:none;position:fixed;inset:0;background:rgba(17,24,39,.4);z-index:89;backdrop-filter:blur(2px)}
+
+/* ── SIDEBAR ── */
+.sidebar{position:fixed;top:var(--th);left:0;bottom:0;width:var(--sw);background:var(--white);border-right:1px solid var(--g200);overflow-y:auto;z-index:90;display:flex;flex-direction:column;transition:transform .3s ease}
+.sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:var(--g200);border-radius:4px}
+.sb-bd{padding:16px 12px;flex:1}
+.sb-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--g300);padding:0 8px;margin-bottom:2px;margin-top:16px}
+.ni{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:var(--r2);cursor:pointer;color:var(--g500);font-size:13px;font-weight:500;transition:.15s;margin-bottom:1px;user-select:none}
+.ni:hover{background:var(--g50);color:var(--g700)}
+.ni.active{background:var(--blue-lt);color:var(--blue)}
+.ni.active .nic{color:var(--blue)}
+.nic{font-size:16px;color:var(--g400);flex-shrink:0}
+.nb{margin-left:auto;font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px}
+.nb-b{background:var(--blue-lt);color:var(--blue)}
+.nb-w{background:var(--wa-lt);color:var(--wa)}
+.nb-d{background:var(--er-lt);color:var(--er)}
+.sb-ft{padding:16px;border-top:1px solid var(--g100)}
+.vc-chip{background:var(--blue-lt);border:1px solid var(--blue-md);border-radius:var(--r);padding:10px 12px;cursor:pointer;transition:.15s}
+.vc-chip:hover{border-color:var(--blue)}
+.vcp{font-family:var(--fd);font-size:15px;font-weight:700;letter-spacing:3px;color:var(--blue-d);margin-bottom:1px}
+.vcm{font-size:10px;color:var(--g500);margin-bottom:6px}
+.vcs{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:var(--wa)}
+.vcd{width:5px;height:5px;border-radius:50%;background:var(--wa);animation:pw 2s infinite}
+@keyframes pw{0%,100%{box-shadow:0 0 0 0 rgba(196,120,0,.3)}50%{box-shadow:0 0 0 4px rgba(196,120,0,0)}}
+
+/* ── CONTENT ── */
+.content{margin-left:var(--sw);flex:1;min-height:calc(100vh - var(--th))}
+.screen{display:none;padding:28px}
+.screen.active{display:block;animation:fu .3s ease}
+@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.ph{margin-bottom:24px}
+.pt{font-family:var(--fd);font-size:22px;font-weight:700;color:var(--g900);margin-bottom:2px}
+.ps{font-size:12px;color:var(--g400)}
+
+/* ── CARDS / HELPERS ── */
+.card{background:var(--white);border:1px solid var(--g200);border-radius:var(--r3);box-shadow:var(--s0)}
+.cp{padding:20px}
+.phd{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.ptl{font-size:13px;font-weight:700;color:var(--g700);display:flex;align-items:center;gap:7px}
+.ptl i{color:var(--blue);font-size:16px}
+.pac{font-size:11px;font-weight:600;color:var(--blue);cursor:pointer;display:flex;align-items:center;gap:3px;transition:.15s}
+.pac:hover{color:var(--blue-d)}
+.tag{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700}
+.tb{background:var(--blue-lt);color:var(--blue)}
+.tg{background:var(--ok-lt);color:var(--ok)}
+.tw{background:var(--wa-lt);color:var(--wa)}
+.td{background:var(--er-lt);color:var(--er)}
+.tgr{background:var(--g100);color:var(--g500)}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:var(--r2);font-family:var(--fb);font-size:12px;font-weight:600;cursor:pointer;transition:.18s;border:none;white-space:nowrap}
+.bp{background:var(--blue);color:#fff}.bp:hover{background:var(--blue-d)}
+.bs{background:var(--white);color:var(--blue);border:1.5px solid var(--blue)}.bs:hover{background:var(--blue-lt)}
+.bg{background:var(--g50);color:var(--g500);border:1px solid var(--g200)}.bg:hover{background:var(--g100);color:var(--g700)}
+.bsm{padding:6px 12px;font-size:11px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.mb8{margin-bottom:8px}.mb12{margin-bottom:12px}.mb16{margin-bottom:16px}.mb20{margin-bottom:20px}.mb24{margin-bottom:24px}
+.mt4{margin-top:4px}.mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}
+.fx{display:flex}.fxc{display:flex;align-items:center}.g6{gap:6px}.g8{gap:8px}.g10{gap:10px}.g12{gap:12px}.g16{gap:16px}
+.f1{flex:1}.tr{text-align:right}
+.sl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--g400);margin-bottom:12px}
+.div{height:1px;background:var(--g100);margin:16px 0}
+
+/* ── DATA TABLE ── */
+.dt{width:100%;border-collapse:collapse;font-size:12px}
+.dt th{text-align:left;padding:8px 10px;color:var(--g400);font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid var(--g100)}
+.dt td{padding:10px;color:var(--g700);border-bottom:1px solid var(--g100)}
+.dt tr:last-child td{border-bottom:none}
+.dt tr:hover td{background:var(--g50)}
+.dt tfoot td{color:var(--blue-d);font-weight:700;border-top:2px solid var(--blue-md)}
+
+/* ── METRIC CARDS ── */
+.mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.mc{background:var(--white);border:1px solid var(--g200);border-radius:var(--r);padding:16px;box-shadow:var(--s0);display:flex;align-items:center;gap:12px;transition:.2s}
+.mc:hover{box-shadow:var(--s1);border-color:var(--g300)}
+.mi{width:40px;height:40px;border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.mi-b{background:var(--blue-lt);color:var(--blue)}
+.mi-g{background:var(--ok-lt);color:var(--ok)}
+.mi-w{background:var(--wa-lt);color:var(--wa)}
+.mi-d{background:var(--er-lt);color:var(--er)}
+.mv{font-family:var(--fd);font-size:19px;font-weight:700;color:var(--g900);line-height:1}
+.ml{font-size:10px;color:var(--g400);margin-top:2px}
+
+/* ── TIMELINE ── */
+.tlo{display:flex;flex-direction:column}
+.tli{display:flex;gap:14px;padding:12px 10px;border-radius:var(--r2);transition:.15s;cursor:default}
+.tli:hover{background:var(--g50)}
+.tsp{display:flex;flex-direction:column;align-items:center;width:18px;flex-shrink:0;padding-top:2px}
+.td2{width:12px;height:12px;border-radius:50%;flex-shrink:0;border:2px solid transparent}
+.td2.dn{background:var(--ok);border-color:var(--ok)}
+.td2.ac{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-md);animation:rp 2s infinite}
+@keyframes rp{0%,100%{box-shadow:0 0 0 2px var(--blue-md)}50%{box-shadow:0 0 0 5px rgba(0,90,169,.1)}}
+.td2.pd{background:var(--g200);border-color:var(--g200)}
+.tln{width:1px;flex:1;min-height:20px;margin:4px 0}
+.tln.dn{background:var(--ok);opacity:.3}
+.tln.md{background:linear-gradient(180deg,rgba(15,123,75,.3) 0%,var(--g200) 100%)}
+.tln.gr{background:var(--g200)}
+.tlb{flex:1}
+.tlt{font-size:13px;font-weight:700;color:var(--g900);margin-bottom:2px}
+.tlt.dn{color:var(--g500);font-weight:500}
+.tlt.ac{color:var(--blue)}
+.tlt.pd{color:var(--g300)}
+.tlm{font-size:10px;color:var(--g400);margin-bottom:3px}
+.tln2{margin-top:6px;padding:8px 10px;background:var(--g50);border-left:2px solid var(--blue);border-radius:0 var(--r2) var(--r2) 0;font-size:11px;color:var(--g500);line-height:1.5}
+.tln2.an{background:var(--blue-lt);border-left-color:var(--blue);color:var(--blue-d)}
+.tlr{display:flex;flex-direction:column;align-items:flex-end;gap:4px;padding-top:2px}
+
+/* ══════════════════════════════════════════
+   DASHBOARD
+══════════════════════════════════════════ */
+.dh{border-radius:var(--r3);overflow:hidden;position:relative;margin-bottom:20px;box-shadow:var(--s2);background:var(--blue-d);min-height:320px}
+.dhi{width:100%;height:320px;object-fit:cover;object-position:center 30%;display:block;filter:brightness(.6) saturate(.8)}
+.dhg{position:absolute;inset:0;background:linear-gradient(105deg,rgba(0,30,60,.88) 0%,rgba(0,50,100,.6) 40%,rgba(0,60,120,.2) 70%,transparent 100%)}
+.dhgb{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,30,60,.75) 100%)}
+.dhc{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:24px 28px}
+.dht{display:flex;align-items:flex-start;justify-content:space-between}
+.sp{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);border-radius:20px;padding:5px 12px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff}
+.sd{width:6px;height:6px;border-radius:50%;background:#FFA726;animation:pw 2s infinite}
+.pf{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(12px);border-radius:var(--r);padding:14px 16px;min-width:148px;text-align:center}
+.pfl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px}
+.pfn{font-family:var(--fd);font-size:38px;font-weight:800;color:#fff;line-height:1;margin-bottom:8px}
+.pfb{height:3px;background:rgba(255,255,255,.15);border-radius:3px;margin-bottom:6px;overflow:hidden}
+.pff{height:100%;background:linear-gradient(90deg,#4DB8FF,#8AD5FF);border-radius:3px;transition:width 1s ease}
+.pfe{font-size:10px;color:rgba(255,255,255,.65)}
+.pfe strong{color:#FFA726}
+.dhb{}
+.plate{font-family:var(--fd);font-size:46px;font-weight:800;letter-spacing:8px;color:#fff;line-height:1;margin-bottom:4px}
+.model{font-size:14px;color:rgba(255,255,255,.75);margin-bottom:16px}
+.hmeta{display:flex;gap:28px;flex-wrap:wrap}
+.hmi .hv{font-size:15px;font-weight:700;color:#fff;line-height:1}
+.hmi .hl{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.5)}
+
+/* ══════════════════════════════════════════
+   MIS VEHÍCULOS — Card gallery + detail
+══════════════════════════════════════════ */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+.vcard{background:var(--white);border:2px solid var(--g200);border-radius:var(--r3);overflow:hidden;cursor:pointer;transition:.2s;box-shadow:var(--s0)}
+.vcard:hover{border-color:var(--blue);box-shadow:var(--s2);transform:translateY(-2px)}
+.vcard.sel{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-md)}
+.vci{width:100%;height:160px;object-fit:cover}
+.vcb{padding:14px}
+.vcp2{font-family:var(--fd);font-size:15px;font-weight:700;letter-spacing:3px;color:var(--blue-d);margin-bottom:1px}
+.vcm2{font-size:11px;color:var(--g400);margin-bottom:10px}
+.vcr{display:flex;justify-content:space-between;align-items:center;font-size:11px;margin-bottom:4px}
+.vck{color:var(--g400)}.vcv{font-weight:600;color:var(--g700)}
+.vcf{padding:10px 14px;background:var(--g50);border-top:1px solid var(--g100);display:flex;align-items:center;justify-content:space-between}
+.vcn{font-size:10px;color:var(--g400)}
+.vcn strong{color:var(--wa)}
+
+/* VEHICLE DETAIL PANEL */
+.vd-panel{
+  background:var(--white);border:1px solid var(--g200);border-radius:var(--r3);
+  box-shadow:var(--s1);overflow:hidden;margin-bottom:24px;
+  animation:fu .3s ease;
+}
+.vdp-hero{
+  position:relative;height:220px;overflow:hidden;
+  background:var(--blue-d);
+}
+.vdp-img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:brightness(.55) saturate(.8)}
+.vdp-grad{position:absolute;inset:0;background:linear-gradient(105deg,rgba(0,30,60,.9) 0%,rgba(0,60,120,.4) 60%,transparent 100%)}
+.vdp-content{position:absolute;inset:0;display:flex;align-items:flex-end;padding:20px 24px}
+.vdp-plate{font-family:var(--fd);font-size:32px;font-weight:800;letter-spacing:6px;color:#fff;margin-bottom:2px}
+.vdp-model{font-size:13px;color:rgba(255,255,255,.75)}
+.vdp-badge{position:absolute;top:16px;right:16px}
+
+.vd-body{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+.vd-col{padding:20px;border-right:1px solid var(--g100)}
+.vd-col:last-child{border-right:none}
+.vd-col-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--g400);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.vd-col-title i{color:var(--blue);font-size:14px}
+
+.vd-stat{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--g100)}
+.vd-stat:last-child{border-bottom:none}
+.vd-sk{font-size:11px;color:var(--g400)}.vd-sv{font-size:11px;font-weight:600;color:var(--g700)}
+
+.hlast-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:8px 0;border-bottom:1px solid var(--g100);
+}
+.hlast-item:last-child{border-bottom:none}
+.hli-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);flex-shrink:0;margin-top:4px}
+.hli-title{font-size:12px;font-weight:600;color:var(--g700);margin-bottom:1px}
+.hli-meta{font-size:10px;color:var(--g400)}
+.hli-cost{font-family:var(--fd);font-size:13px;font-weight:700;color:var(--g700);margin-left:auto;flex-shrink:0}
+
+.rec-item{
+  display:flex;align-items:flex-start;gap:9px;
+  padding:7px 0;border-bottom:1px solid var(--g100);
+}
+.rec-item:last-child{border-bottom:none}
+.rec-ico{width:28px;height:28px;border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
+.rec-msg{font-size:11px;color:var(--g700);line-height:1.4}
+.rec-sub{font-size:10px;color:var(--g400)}
+
+/* health ring */
+.hring-wrap{display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+
+/* ══════════════════════════════════════════
+   TRANSPARENCIA
+══════════════════════════════════════════ */
+.ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+.ev-card{
+  background:var(--white);border:1px solid var(--g200);border-radius:var(--r3);
+  overflow:hidden;box-shadow:var(--s0);transition:.2s;cursor:pointer;
+}
+.ev-card:hover{box-shadow:var(--s2);border-color:var(--blue);transform:translateY(-2px)}
+.ev-img-wrap{position:relative;height:160px;overflow:hidden;background:var(--g100)}
+.ev-img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.ev-card:hover .ev-img{transform:scale(1.04)}
+.ev-img-grad{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,30,60,.8) 100%)}
+.ev-img-tag{position:absolute;top:10px;left:10px}
+.ev-img-status{position:absolute;bottom:10px;right:10px}
+.ev-body{padding:12px 14px}
+.ev-stage{font-size:12px;font-weight:700;color:var(--g900);margin-bottom:2px}
+.ev-desc{font-size:11px;color:var(--g500);line-height:1.5;margin-bottom:8px}
+.ev-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ev-meta-item{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--g400)}
+.ev-meta-item i{font-size:12px;color:var(--blue-t)}
+.ev-obs{
+  margin-top:8px;padding:8px 10px;
+  background:var(--blue-lt);border-left:2px solid var(--blue);
+  border-radius:0 var(--r2) var(--r2) 0;
+  font-size:11px;color:var(--blue-d);line-height:1.5;
+}
+
+/* BEFORE / AFTER */
+.ba-container{
+  background:var(--white);border:1px solid var(--g200);border-radius:var(--r3);
+  overflow:hidden;box-shadow:var(--s1);
+}
+.ba-hdr{
+  background:linear-gradient(135deg,var(--blue-d),var(--blue));
+  padding:16px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.ba-hdr-title{font-family:var(--fd);font-size:15px;font-weight:700;color:#fff}
+.ba-hdr-sub{font-size:11px;color:rgba(255,255,255,.7)}
+.ba-body{padding:20px}
+.ba-cols{display:grid;grid-template-columns:1fr 60px 1fr;gap:0;align-items:start}
+.ba-side{}
+.ba-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;margin-bottom:8px}
+.ba-badge.bf{background:var(--er-lt);color:var(--er)}
+.ba-badge.ba{background:var(--ok-lt);color:var(--ok)}
+.ba-img{width:100%;height:190px;object-fit:cover;border-radius:var(--r);border:1px solid var(--g200)}
+.ba-caption{font-size:11px;color:var(--g500);margin-top:8px;line-height:1.5}
+.ba-sep{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;height:190px;margin-top:30px}
+.ba-sep-line{width:1px;flex:1;background:var(--g200)}
+.ba-sep-vs{font-family:var(--fd);font-size:12px;font-weight:700;color:var(--g300);letter-spacing:1px}
+.ba-footer{padding:14px 20px;background:var(--ok-lt);border-top:1px solid rgba(15,123,75,.15);display:flex;align-items:center;gap:12px}
+.ba-footer i{font-size:20px;color:var(--ok)}
+.ba-footer-text{}
+.ba-footer-t{font-size:12px;font-weight:700;color:var(--ok)}
+.ba-footer-s{font-size:10px;color:var(--g500)}
+
+/* ══════════════════════════════════════════
+   HISTORIAL
+══════════════════════════════════════════ */
+.hf-bar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+.hf{padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;transition:.15s;background:var(--white);border:1px solid var(--g200);color:var(--g500);box-shadow:var(--s0)}
+.hf:hover{border-color:var(--blue);color:var(--blue)}
+.hf.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.hsearch{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--g200);border-radius:var(--r2);padding:6px 12px;box-shadow:var(--s0)}
+.hsearch i{color:var(--g400);font-size:14px}
+.hsearch input{border:none;outline:none;font-family:var(--fb);font-size:12px;color:var(--g700);background:transparent;width:160px}
+.hsearch input::placeholder{color:var(--g300)}
+.hrow{display:flex;gap:12px;align-items:flex-start;padding:14px 10px;border-bottom:1px solid var(--g100);transition:.15s}
+.hrow:hover{background:var(--g50);border-radius:var(--r2)}
+.hrow:last-child{border-bottom:none}
+.hdt{min-width:64px;text-align:right;flex-shrink:0;padding-top:1px}
+.hdty{font-size:12px;font-weight:700;color:var(--g700)}.hdtm{font-size:10px;color:var(--g400)}
+.hdot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.hbody{flex:1}
+.htitle{font-size:13px;font-weight:700;color:var(--g900);margin-bottom:4px}
+.htags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.hdetail{font-size:10px;color:var(--g400)}
+.hcost{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--g700);white-space:nowrap}
+
+/* ══════════════════════════════════════════
+   REPORTES
+══════════════════════════════════════════ */
+.rdoc{background:var(--white);border:1px solid var(--g200);border-radius:var(--r3);box-shadow:var(--s2);overflow:hidden}
+.rdh{background:linear-gradient(135deg,var(--blue-d),var(--blue));padding:24px 28px;display:flex;justify-content:space-between;align-items:flex-start}
+.rdhl{font-family:var(--fd);font-size:22px;font-weight:800;letter-spacing:3px;color:#fff;margin-bottom:2px}
+.rdhs{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.rdhr{text-align:right}
+.rdho{font-size:12px;color:rgba(255,255,255,.75)}
+.rdho strong{color:#fff}
+.rdb{padding:24px 28px}
+.rdst{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);padding-bottom:8px;border-bottom:2px solid var(--blue-lt);margin-bottom:12px}
+.rdr{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--g100)}
+.rdr:last-child{border-bottom:none}
+.rdk{font-size:12px;color:var(--g400)}.rdv{font-size:12px;font-weight:600;color:var(--g700);text-align:right}
+.gc{display:flex;align-items:center;gap:12px;background:var(--ok-lt);border:1px solid rgba(15,123,75,.2);border-radius:var(--r);padding:12px 14px}
+.gc i{font-size:22px;color:var(--ok);flex-shrink:0}
+.gct{font-size:12px;font-weight:700;color:var(--ok)}.gcs{font-size:10px;color:var(--g500)}
+.oi{display:flex;gap:10px;padding:10px 12px;border-radius:var(--r2);margin-bottom:6px;border:1px solid var(--g100)}
+.oi i{font-size:15px;flex-shrink:0;margin-top:1px}
+.oi-t{font-size:11px;line-height:1.5;color:var(--g500)}
+.oi.wo{background:var(--wa-lt);border-color:rgba(196,120,0,.15)}
+.oi.do{background:var(--er-lt);border-color:rgba(201,43,43,.12)}
+.oi.oo{background:var(--ok-lt);border-color:rgba(15,123,75,.12)}
+
+/* ══════════════════════════════════════════
+   ASISTENTE
+══════════════════════════════════════════ */
+.mb-banner{background:linear-gradient(135deg,var(--blue-d),var(--blue-t));border-radius:var(--r3);padding:24px;display:flex;align-items:center;gap:20px;margin-bottom:20px;color:#fff;box-shadow:var(--s2)}
+.mbi{width:56px;height:56px;border-radius:var(--r);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.mbt{font-family:var(--fd);font-size:18px;font-weight:700;color:#fff;margin-bottom:2px}
+.mbs{font-size:12px;color:rgba(255,255,255,.7)}
+.ac2{background:var(--white);border:1px solid var(--g200);border-radius:var(--r);padding:16px;display:flex;align-items:center;gap:14px;box-shadow:var(--s0);transition:.2s;margin-bottom:10px}
+.ac2:hover{box-shadow:var(--s1)}
+.ac2.ug{border-left:3px solid var(--wa)}
+.ac2.cr{border-left:3px solid var(--er)}
+.ac2.ok2{border-left:3px solid var(--ok)}
+.aci{width:42px;height:42px;border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.act{font-size:13px;font-weight:700;color:var(--g900);margin-bottom:2px}
+.acm{font-size:11px;color:var(--g500);line-height:1.5}
+.acr{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.ackm{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--g700)}
+.ackl{font-size:9px;color:var(--g400);text-align:right}
+.msg3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.msc{background:var(--white);border:1px solid var(--g200);border-radius:var(--r);padding:16px;text-align:center;box-shadow:var(--s0);transition:.2s}
+.msc:hover{box-shadow:var(--s1);transform:translateY(-2px)}
+.msi{font-size:28px;margin-bottom:8px}
+.msn{font-size:12px;font-weight:700;color:var(--g700);margin-bottom:4px}
+.msw{font-size:10px;color:var(--g400);margin-bottom:8px}
+.msb{height:4px;background:var(--g100);border-radius:4px;overflow:hidden}
+.msbf{height:100%;border-radius:4px}
+.tip-bar{background:var(--blue-lt);border:1px solid var(--blue-md);border-radius:var(--r);padding:16px;display:flex;gap:12px;align-items:flex-start}
+.tip-bar i{color:var(--blue);font-size:20px;flex-shrink:0;margin-top:1px}
+.tip-t{font-size:12px;font-weight:700;color:var(--blue-d);margin-bottom:3px}
+.tip-s{font-size:11px;color:var(--blue);line-height:1.6}
+
+/* ══════════════════════════════════════════
+   SEGUIMIENTO
+══════════════════════════════════════════ */
+.ph-banner{background:linear-gradient(135deg,var(--blue-d),var(--blue));border-radius:var(--r3);padding:24px 28px;color:#fff;margin-bottom:20px;box-shadow:var(--s2)}
+.phb-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px}
+.phb-c{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:4px}
+.phb-s{font-family:var(--fd);font-size:22px;font-weight:700;color:#fff}
+.phb-p{font-family:var(--fd);font-size:48px;font-weight:800;color:#fff;line-height:1}
+.phb-bar{height:5px;background:rgba(255,255,255,.15);border-radius:5px;overflow:hidden}
+.phb-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,#7ECFFF,#C8EBFF);transition:width 1.2s ease}
+.phb-steps{display:flex;justify-content:space-between;font-size:9px;font-weight:600;letter-spacing:.5px;color:rgba(255,255,255,.45);margin-top:10px}
+.phb-steps .as{color:#fff}.phb-steps .ds{color:rgba(255,255,255,.7)}
+
+/* ══════════════════════════════════════════
+   CENTRO DE ATENCIÓN
+══════════════════════════════════════════ */
+.ch{background:linear-gradient(135deg,var(--blue-d),var(--blue));border-radius:var(--r3);padding:32px;text-align:center;color:#fff;margin-bottom:24px;box-shadow:var(--s2)}
+.cht{font-family:var(--fd);font-size:26px;font-weight:800;margin-bottom:6px}
+.chs{font-size:13px;color:rgba(255,255,255,.75)}
+.chh{margin-top:12px;display:inline-flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,.85);background:rgba(255,255,255,.1);padding:5px 14px;border-radius:20px}
+.acards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.acard{background:var(--white);border:1.5px solid var(--g200);border-radius:var(--r3);padding:20px;text-align:center;cursor:pointer;transition:.2s;box-shadow:var(--s0)}
+.acard:hover{border-color:var(--blue);box-shadow:var(--s2);transform:translateY(-3px)}
+.acardi{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 10px}
+.acard-b .acardi{background:var(--blue-lt);color:var(--blue)}
+.acard-g .acardi{background:var(--ok-lt);color:var(--ok)}
+.acard-w .acardi{background:var(--wa-lt);color:var(--wa)}
+.acard-d .acardi{background:var(--er-lt);color:var(--er)}
+.acardt{font-size:13px;font-weight:700;color:var(--g900);margin-bottom:3px}
+.acards2{font-size:10px;color:var(--g400)}
+.cig{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cic{background:var(--white);border:1px solid var(--g200);border-radius:var(--r);padding:16px;box-shadow:var(--s0)}
+.cih{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.cih i{font-size:16px;color:var(--blue)}
+.cit{font-size:12px;font-weight:700;color:var(--g700)}
+.cib{font-size:12px;color:var(--g500);line-height:1.7}
+.cib strong{color:var(--g700)}
+
+/* ── BOTTOM NAV ── */
+.bnav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--g200);z-index:110;box-shadow:0 -2px 12px rgba(0,0,0,.06)}
+.bni{display:flex}
+.bn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 4px 8px;cursor:pointer;color:var(--g400);font-size:9px;font-weight:600;gap:2px;transition:.15s;border:none;background:transparent;letter-spacing:.3px}
+.bn i{font-size:20px}
+.bn.active{color:var(--blue)}
+.bn:hover{color:var(--g700)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .mgrid,.g4{grid-template-columns:repeat(2,1fr)}
+  .vgrid{grid-template-columns:repeat(2,1fr)}
+  .acards{grid-template-columns:repeat(2,1fr)}
+  .msg3{grid-template-columns:repeat(2,1fr)}
+  .vd-body{grid-template-columns:1fr}
+  .vd-col{border-right:none;border-bottom:1px solid var(--g100)}
+  .vd-col:last-child{border-bottom:none}
+}
+@media(max-width:860px){
+  :root{--sw:0px}
+  .sidebar{width:260px;transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .sb-ov.open{display:block}
+  .tb-logo{width:auto}
+  .tb-mb{display:flex}
+  .content{margin-left:0}
+  .bnav{display:block}
+  .screen{padding:16px 14px 80px}
+  .dhi,.dh{min-height:240px}
+  .dhi{height:240px}
+  .plate{font-size:34px;letter-spacing:6px}
+  .pf{display:none}
+  .g2,.g3{grid-template-columns:1fr}
+  .vgrid{grid-template-columns:1fr}
+  .ev-grid{grid-template-columns:repeat(2,1fr)}
+  .ba-cols{grid-template-columns:1fr}
+  .ba-sep{display:none}
+  .msg3{grid-template-columns:1fr 1fr}
+  .cig{grid-template-columns:1fr}
+  .rdh{flex-direction:column;gap:12px}
+  .rdhr{text-align:left}
+  .ev-grid{grid-template-columns:1fr 1fr}
+  .acards{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .mgrid{grid-template-columns:1fr 1fr}
+  .acards{grid-template-columns:1fr 1fr}
+  .ev-grid{grid-template-columns:1fr 1fr}
+  .plate{font-size:28px;letter-spacing:4px}
+  .hmeta{gap:16px}
+  .phb-steps{display:none}
+  .hdt{display:none}
+  .hsearch{display:none}
+  .hf-bar{flex-wrap:wrap}
+}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="tb-logo">
+    <button class="tb-mb" id="menuBtn" aria-label="Abrir menú"><i class="ti ti-menu-2"></i></button>
+    
+    <img src="img1.png" alt="Logo SENA360" class="logo-em" style="width: 36px; height: 36px; object-fit: contain;">
+    
+    <div>
+      <div class="lw-main">SENA360</div>
+      <div class="lw-sub">Senatinos · 39 años</div>
+    </div>
+  </div>
+  <div class="tb-sp"></div>
+  <div class="tb-r">
+    <div class="tb-ic" aria-label="Notificaciones"><i class="ti ti-bell"></i><span class="nd"></span></div>
+    <div class="tb-ic" aria-label="Ajustes"><i class="ti ti-settings"></i></div>
+    <div class="up"><div class="ua">CL</div><span class="un">Carlos López</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="sb-ov" id="sbOv"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-bd">
+      <div class="sb-lbl">Principal</div>
+      <div class="ni active" data-s="dashboard" onclick="go('dashboard',this)"><i class="ti ti-dashboard nic"></i>Dashboard</div>
+      <div class="ni" data-s="vehiculos" onclick="go('vehiculos',this)"><i class="ti ti-car nic"></i>Mis Vehículos<span class="nb nb-b">2</span></div>
+      <div class="sb-lbl">Servicio activo</div>
+      <div class="ni" data-s="seguimiento" onclick="go('seguimiento',this)"><i class="ti ti-timeline nic"></i>Seguimiento<span class="nb nb-w">65%</span></div>
+      <div class="ni" data-s="transparencia" onclick="go('transparencia',this)"><i class="ti ti-eye nic"></i>Transparencia</div>
+      <div class="sb-lbl">Documentos</div>
+      <div class="ni" data-s="historial" onclick="go('historial',this)"><i class="ti ti-history nic"></i>Historial</div>
+      <div class="ni" data-s="reportes" onclick="go('reportes',this)"><i class="ti ti-file-report nic"></i>Reportes</div>
+      <div class="sb-lbl">Herramientas</div>
+      <div class="ni" data-s="asistente" onclick="go('asistente',this)"><i class="ti ti-tool nic"></i>Asistente Mant.<span class="nb nb-d">2</span></div>
+      <div class="ni" data-s="atencion" onclick="go('atencion',this)"><i class="ti ti-headset nic"></i>Centro de Atención</div>
+    </div>
+    <div class="sb-ft">
+      <div class="vc-chip" onclick="go('vehiculos',null)">
+        <div class="vcp" id="sb-plate">ABC-123</div>
+        <div class="vcm" id="sb-model">Toyota Hilux 2021 · Diésel</div>
+        <div class="vcs"><span class="vcd"></span><span id="sb-status">Reparación en proceso</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <!-- ══════════════════════ DASHBOARD ══════════════════════ -->
+    <section class="screen active" id="screen-dashboard">
+      <div class="dh mb20" id="dash-hero">
+        <img class="dhi" id="dash-img"
+          src="https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=1400&q=80"
+          alt="Vehículo en servicio"/>
+        <div class="dhg"></div><div class="dhgb"></div>
+        <div class="dhc">
+          <div class="dht">
+            <div class="sp"><span class="sd"></span><span id="d-statuslbl">Servicio activo</span></div>
+            <div class="pf">
+              <div class="pfl">Avance</div>
+              <div class="pfn" id="d-pct">65%</div>
+              <div class="pfb"><div class="pff" id="d-bar" style="width:65%"></div></div>
+              <div class="pfe">Entrega est. <strong id="d-eta">05 Jun</strong></div>
+            </div>
+          </div>
+          <div class="dhb">
+            <div class="plate" id="d-plate">ABC-123</div>
+            <div class="model" id="d-model">Toyota Hilux 2021 · 2.8L Diésel · Automático</div>
+            <div class="hmeta">
+              <div class="hmi"><div class="hv" id="d-km">87,420 km</div><div class="hl">Kilometraje</div></div>
+              <div class="hmi"><div class="hv" id="d-tech">Ing. Ramos</div><div class="hl">Técnico</div></div>
+              <div class="hmi"><div class="hv" id="d-time" style="color:#FFA726">3 días</div><div class="hl">Tiempo est.</div></div>
+              <div class="hmi"><div class="hv" id="d-next">90,000 km</div><div class="hl">Próximo mant.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mgrid">
+        <div class="mc"><div class="mi mi-b"><i class="ti ti-tools"></i></div><div><div class="mv" id="d-m1">65%</div><div class="ml">Avance del servicio</div></div></div>
+        <div class="mc"><div class="mi mi-g"><i class="ti ti-heart-rate-monitor"></i></div><div><div class="mv" id="d-m2" style="color:var(--ok)">92/100</div><div class="ml">Salud del vehículo</div></div></div>
+        <div class="mc"><div class="mi mi-w"><i class="ti ti-clock"></i></div><div><div class="mv" id="d-m3" style="color:var(--wa)">05 Jun</div><div class="ml">Entrega estimada</div></div></div>
+        <div class="mc"><div class="mi mi-d"><i class="ti ti-alert-triangle"></i></div><div><div class="mv" id="d-m4" style="color:var(--wa)">Frenos</div><div class="ml">Alerta prioritaria</div></div></div>
+      </div>
+      <div class="g2">
+        <div class="card cp">
+          <div class="phd"><span class="ptl"><i class="ti ti-timeline"></i>Estado del servicio</span><span class="pac" onclick="go('seguimiento',null)">Ver detalle <i class="ti ti-arrow-right"></i></span></div>
+          <div class="tlo" id="dash-tl">
+            <div class="tli"><div class="tsp"><div class="td2 dn"></div><div class="tln dn"></div></div><div class="tlb"><div class="tlt dn">Recepción del vehículo</div><div class="tlm">30 May · 08:30 am · González</div></div><div class="tlr"><span class="tag tg">Listo</span></div></div>
+            <div class="tli"><div class="tsp"><div class="td2 dn"></div><div class="tln dn"></div></div><div class="tlb"><div class="tlt dn">Diagnóstico electrónico</div><div class="tlm">30 May · 11:15 am · Tec. Herrera</div></div><div class="tlr"><span class="tag tg">Listo</span></div></div>
+            <div class="tli"><div class="tsp"><div class="td2 dn"></div><div class="tln md"></div></div><div class="tlb"><div class="tlt dn">Presupuesto aprobado</div><div class="tlm">31 May · 09:00 am</div></div><div class="tlr"><span class="tag tg">Listo</span></div></div>
+            <div class="tli"><div class="tsp"><div class="td2 ac"></div><div class="tln gr"></div></div><div class="tlb"><div class="tlt ac">Reparación en proceso</div><div class="tlm">01 Jun · 08:00 am · Ing. Ramos</div></div><div class="tlr"><span class="tag tb">En curso</span></div></div>
+            <div class="tli"><div class="tsp"><div class="td2 pd"></div><div class="tln gr"></div></div><div class="tlb"><div class="tlt pd">Control de calidad</div><div class="tlm">Est. 04 Jun</div></div><div class="tlr"><span class="tag tgr">Pendiente</span></div></div>
+            <div class="tli"><div class="tsp"><div class="td2 pd"></div></div><div class="tlb"><div class="tlt pd">Entrega al cliente</div><div class="tlm">Est. 05 Jun · 10:00 am</div></div><div class="tlr"><span class="tag tgr">Pendiente</span></div></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div class="card cp">
+            <div class="phd"><span class="ptl"><i class="ti ti-user-check"></i>Técnico asignado</span></div>
+            <div class="fxc g12">
+              <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--blue-d),var(--blue-t));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:17px;font-weight:700;color:#fff;flex-shrink:0">JR</div>
+              <div><div style="font-size:14px;font-weight:700;color:var(--g900)" id="d-techname">Ing. José Ramos</div><div style="font-size:11px;color:var(--g400)">Especialista Diésel · 12 años</div><div style="display:flex;align-items:center;gap:5px;margin-top:4px;font-size:10px;font-weight:600;color:var(--ok)"><span style="width:5px;height:5px;border-radius:50%;background:var(--ok)"></span>Activo · Bahía 3</div></div>
+            </div>
+          </div>
+          <div class="card cp" style="flex:1">
+            <div class="phd"><span class="ptl"><i class="ti ti-receipt"></i>Costos del servicio</span><span class="pac" onclick="go('reportes',null)">Ver reporte <i class="ti ti-arrow-right"></i></span></div>
+            <table class="dt">
+              <tbody>
+                <tr><td>Pastillas Brembo</td><td class="tr">S/ 380</td></tr>
+                <tr><td>Aceite Castrol 5L</td><td class="tr">S/ 210</td></tr>
+                <tr><td>Filtro aceite</td><td class="tr">S/ 85</td></tr>
+                <tr><td>Mano de obra</td><td class="tr">S/ 570</td></tr>
+              </tbody>
+              <tfoot><tr><td>TOTAL + IGV</td><td class="tr" style="font-family:var(--fd);font-size:17px">S/ 1,469</td></tr></tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ MIS VEHÍCULOS ══════════════════════ -->
+    <section class="screen" id="screen-vehiculos">
+      <div class="ph"><div class="pt">Mis Vehículos</div><div class="ps">Selecciona un vehículo para ver su ficha completa</div></div>
+
+      <!-- Vehicle cards -->
+      <div class="vgrid mb24">
+        <div class="vcard sel" id="vc-0" onclick="selectV(0,this)">
+          <div style="position:relative">
+            <img class="vci" src="https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=600&q=80" alt="Toyota Hilux"/>
+            <div style="position:absolute;top:10px;right:10px"><span class="tag tw">En servicio</span></div>
+            <div style="position:absolute;top:10px;left:10px"><span class="tag tb">Seleccionado</span></div>
+          </div>
+          <div class="vcb">
+            <div class="vcp2">ABC-123</div><div class="vcm2">Toyota Hilux 2021 · 2.8L Diésel</div>
+            <div class="vcr"><span class="vck">Kilometraje</span><span class="vcv">87,420 km</span></div>
+            <div class="vcr"><span class="vck">Estado</span><span class="vcv" style="color:var(--wa)">Reparación activa</span></div>
+            <div class="vcr"><span class="vck">Salud</span><span class="vcv" style="color:var(--ok)">92/100</span></div>
+          </div>
+          <div class="vcf"><div class="vcn">Próx. mant. <strong>90,000 km</strong></div></div>
+        </div>
+        <div class="vcard" id="vc-1" onclick="selectV(1,this)">
+          <div style="position:relative">
+            <img class="vci" src="https://images.unsplash.com/photo-1571987502227-9231b837d92a?w=600&q=80" alt="NP300"/>
+            <div style="position:absolute;top:10px;right:10px"><span class="tag tg">Operativo</span></div>
+          </div>
+          <div class="vcb">
+            <div class="vcp2">XYZ-789</div><div class="vcm2">Nissan NP300 2022 · 2.5L Diésel</div>
+            <div class="vcr"><span class="vck">Kilometraje</span><span class="vcv">45,120 km</span></div>
+            <div class="vcr"><span class="vck">Estado</span><span class="vcv" style="color:var(--ok)">Operativo</span></div>
+            <div class="vcr"><span class="vck">Salud</span><span class="vcv" style="color:var(--ok)">97/100</span></div>
+          </div>
+          <div class="vcf"><div class="vcn">Próx. mant. <strong>50,000 km</strong></div></div>
+        </div>
+        <div style="background:var(--g50);border:2px dashed var(--g200);border-radius:var(--r3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:40px;cursor:pointer;transition:.2s;min-height:280px" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='var(--g200)'">
+          <div style="width:52px;height:52px;border-radius:50%;background:var(--blue-lt);display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--blue)"><i class="ti ti-plus"></i></div>
+          <div style="font-size:13px;font-weight:700;color:var(--g500)">Agregar vehículo</div>
+          <div style="font-size:11px;color:var(--g300);text-align:center">Registra una nueva unidad</div>
+        </div>
+      </div>
+
+      <!-- ── VEHICLE DETAIL PANEL ── -->
+      <div class="sl mb12" id="vd-label">Ficha del vehículo seleccionado — ABC-123</div>
+      <div class="vd-panel" id="vd-panel">
+        <!-- Hero -->
+        <div class="vdp-hero">
+          <img class="vdp-img" id="vdp-img" src="https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=1200&q=80" alt="Vehículo"/>
+          <div class="vdp-grad"></div>
+          <div class="vdp-content">
+            <div>
+              <div class="vdp-plate" id="vdp-plate">ABC-123</div>
+              <div class="vdp-model" id="vdp-model">Toyota Hilux 2021 · 2.8L Diésel · Automático</div>
+            </div>
+          </div>
+          <div class="vdp-badge"><span class="tag tw" id="vdp-status">En servicio activo</span></div>
+        </div>
+
+        <!-- 3-col body -->
+        <div class="vd-body">
+          <!-- Col 1: ficha técnica + health -->
+          <div class="vd-col">
+            <div class="vd-col-title"><i class="ti ti-car"></i>Ficha técnica</div>
+            <div class="vd-stat"><span class="vd-sk">Placa</span><span class="vd-sv" style="font-family:var(--fd);font-size:14px;letter-spacing:2px" id="vc-plate">ABC-123</span></div>
+            <div class="vd-stat"><span class="vd-sk">Modelo</span><span class="vd-sv" id="vc-model">Toyota Hilux 2021</span></div>
+            <div class="vd-stat"><span class="vd-sk">Motor</span><span class="vd-sv" id="vc-eng">2.8L Diésel 4-cil.</span></div>
+            <div class="vd-stat"><span class="vd-sk">Transmisión</span><span class="vd-sv" id="vc-trans">Automática 6V</span></div>
+            <div class="vd-stat"><span class="vd-sk">Kilometraje</span><span class="vd-sv" id="vc-km">87,420 km</span></div>
+            <div class="vd-stat"><span class="vd-sk">Próx. mant.</span><span class="vd-sv" style="color:var(--wa)" id="vc-next">90,000 km</span></div>
+            <div class="mt12">
+              <div class="vd-col-title" style="margin-bottom:10px"><i class="ti ti-heart-rate-monitor"></i>Salud general</div>
+              <div class="hring-wrap">
+                <svg width="100" height="100" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="40" fill="none" stroke="var(--g100)" stroke-width="8"/>
+                  <circle cx="50" cy="50" r="40" fill="none" stroke="url(#hg)" stroke-width="8"
+                    stroke-dasharray="251.3" stroke-dashoffset="20" stroke-linecap="round" transform="rotate(-90 50 50)"/>
+                  <defs><linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="var(--blue)"/><stop offset="100%" stop-color="var(--ok)"/>
+                  </linearGradient></defs>
+                  <text x="50" y="46" text-anchor="middle" font-family="Syne,sans-serif" font-size="18" font-weight="700" fill="var(--g900)" id="vc-health-num">92</text>
+                  <text x="50" y="60" text-anchor="middle" font-size="8" fill="var(--g400)" letter-spacing="1">SALUD</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Col 2: últimos servicios -->
+          <div class="vd-col">
+            <div class="vd-col-title"><i class="ti ti-history"></i>Últimos servicios</div>
+            <div id="vc-history">
+              <div class="hlast-item">
+                <div class="hli-dot" style="background:var(--blue)"></div>
+                <div style="flex:1"><div class="hli-title">Mantenimiento correctivo + frenos</div><div class="hli-meta">01 Jun 2026 · 87,420 km · Ing. Ramos</div></div>
+                <div class="hli-cost">S/ 1,469</div>
+              </div>
+              <div class="hlast-item">
+                <div class="hli-dot"></div>
+                <div style="flex:1"><div class="hli-title">Mantenimiento preventivo 80,000 km</div><div class="hli-meta">12 Feb 2026 · 80,100 km · Tec. Herrera</div></div>
+                <div class="hli-cost">S/ 920</div>
+              </div>
+              <div class="hlast-item">
+                <div class="hli-dot"></div>
+                <div style="flex:1"><div class="hli-title">Reparación suspensión delantera</div><div class="hli-meta">08 Oct 2025 · 74,320 km · Ing. Ramos</div></div>
+                <div class="hli-cost">S/ 1,380</div>
+              </div>
+              <div class="hlast-item">
+                <div class="hli-dot"></div>
+                <div style="flex:1"><div class="hli-title">Mantenimiento preventivo 70,000 km</div><div class="hli-meta">15 Jun 2025 · 70,050 km</div></div>
+                <div class="hli-cost">S/ 780</div>
+              </div>
+            </div>
+            <div class="mt12">
+              <button class="btn bg bsm" onclick="go('historial',null)" style="width:100%;justify-content:center"><i class="ti ti-history"></i>Ver historial completo</button>
+            </div>
+          </div>
+
+          <!-- Col 3: recomendaciones + acciones -->
+          <div class="vd-col">
+            <div class="vd-col-title"><i class="ti ti-bulb"></i>Recomendaciones</div>
+            <div id="vc-recs">
+              <div class="rec-item">
+                <div class="rec-ico" style="background:var(--er-lt);color:var(--er)"><i class="ti ti-brake"></i></div>
+                <div><div class="rec-msg">Revisar sistema de frenos traseros</div><div class="rec-sub">En próxima visita · Est. 92,000 km</div></div>
+              </div>
+              <div class="rec-item">
+                <div class="rec-ico" style="background:var(--wa-lt);color:var(--wa)"><i class="ti ti-steering-wheel"></i></div>
+                <div><div class="rec-msg">Programar alineamiento y balanceo</div><div class="rec-sub">Recomendado cada 10,000 km</div></div>
+              </div>
+              <div class="rec-item">
+                <div class="rec-ico" style="background:var(--wa-lt);color:var(--wa)"><i class="ti ti-tire"></i></div>
+                <div><div class="rec-msg">Verificar desgaste de neumáticos</div><div class="rec-sub">Último cambio: 65,000 km</div></div>
+              </div>
+              <div class="rec-item">
+                <div class="rec-ico" style="background:var(--wa-lt);color:var(--wa)"><i class="ti ti-battery-charging"></i></div>
+                <div><div class="rec-msg">Evaluar reemplazo de batería</div><div class="rec-sub">Capacidad actual: 68% · Dic 2026</div></div>
+              </div>
+            </div>
+            <div class="mt12" style="display:flex;flex-direction:column;gap:6px">
+              <button class="btn bp bsm" onclick="go('seguimiento',null)" style="width:100%;justify-content:center"><i class="ti ti-timeline"></i>Ver seguimiento</button>
+              <button class="btn bs bsm" onclick="go('reportes',null)" style="width:100%;justify-content:center"><i class="ti ti-file-report"></i>Ver reporte</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ SEGUIMIENTO ══════════════════════ -->
+    <section class="screen" id="screen-seguimiento">
+      <div class="ph"><div class="pt">Seguimiento del servicio</div><div class="ps" id="seg-sub">ABC-123 · Toyota Hilux 2021 · Orden #SEN-2026-0601-047</div></div>
+      <div class="ph-banner mb20">
+        <div class="phb-top">
+          <div><div class="phb-c">Etapa actual</div><div class="phb-s">Reparación en proceso</div></div>
+          <div class="phb-p">65%</div>
+        </div>
+        <div class="phb-bar"><div class="phb-fill" style="width:65%"></div></div>
+        <div class="phb-steps">
+          <span class="ds">Recepción</span><span class="ds">Diagnóstico</span><span class="ds">Presupuesto</span>
+          <span class="as">Reparación</span><span>Control QC</span><span>Entrega</span>
+        </div>
+      </div>
+      <div class="g2">
+        <div class="card cp">
+          <div class="phd"><span class="ptl"><i class="ti ti-list-details"></i>Línea de tiempo</span></div>
+          <div class="tlo">
+            <div class="tli"><div class="tsp"><div class="td2 dn"></div><div class="tln dn"></div></div><div class="tlb"><div class="tlt dn">Recepción del vehículo</div><div class="tlm">30 May 2026 · 08:30 am · González</div><div class="tln2">"Ingreso OK. Odómetro 87,320 km. Ruido leve frenos. Aceite bajo."</div></div><div class="tlr"><span class="tag tg">✓</span></div></div>
+            <div class="tli"><div class="tsp"><div class="td2 dn"></div><div class="tln dn"></div></div><div class="tlb"><div class="tlt dn">Diagnóstico electrónico</div><div class="tlm">30 May 2026 · 11:15 am · Tec. Herrera · Bosch KTS 560</div><div class="tln2">"P0401 EGR. Pastillas 15%. Aceite degradado. Motor y caja OK."</div></div><div class="tlr"><span class="tag tg">✓</span></div></div>
+            <div class="tli"><div class="tsp"><div class="td2 dn"></div><div class="tln md"></div></div><div class="tlb"><div class="tlt dn">Presupuesto aprobado</div><div class="tlm">31 May 2026 · 09:00 am · Aprobado por cliente</div><div class="tln2">"S/ 1,245 + IGV aprobado vía SENA360."</div></div><div class="tlr"><span class="tag tg">✓</span></div></div>
+            <div class="tli"><div class="tsp"><div class="td2 ac"></div><div class="tln gr"></div></div><div class="tlb"><div class="tlt ac">Reparación en proceso</div><div class="tlm">01 Jun 2026 · 08:00 am · Ing. José Ramos · Bahía 3</div><div class="tln2 an">"Pastillas Brembo P56080 instaladas. Purga de frenos OK. Iniciando cambio aceite y limpieza EGR."</div></div><div class="tlr"><span class="tag tb">Activo</span></div></div>
+            <div class="tli"><div class="tsp"><div class="td2 pd"></div><div class="tln gr"></div></div><div class="tlb"><div class="tlt pd">Control de calidad</div><div class="tlm">Est. 04 Jun 2026 · QC Supervisor</div></div><div class="tlr"><span class="tag tgr">Pendiente</span></div></div>
+            <div class="tli"><div class="tsp"><div class="td2 pd"></div></div><div class="tlb"><div class="tlt pd">Entrega al cliente</div><div class="tlm">Est. 05 Jun 2026 · 10:00 am</div></div><div class="tlr"><span class="tag tgr">Pendiente</span></div></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="card cp">
+            <div class="phd"><span class="ptl"><i class="ti ti-user-check"></i>Técnico</span></div>
+            <div class="fxc g12 mb12">
+              <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--blue-d),var(--blue-t));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:17px;font-weight:700;color:#fff;flex-shrink:0">JR</div>
+              <div><div style="font-size:14px;font-weight:700;color:var(--g900)">Ing. José Ramos</div><div style="font-size:11px;color:var(--g400)">Especialista Diésel · 12 años</div><div style="display:flex;align-items:center;gap:5px;margin-top:4px;font-size:10px;font-weight:600;color:var(--ok)"><span style="width:5px;height:5px;border-radius:50%;background:var(--ok)"></span>Activo · Bahía 3</div></div>
+            </div>
+          </div>
+          <div class="card cp">
+            <div class="phd"><span class="ptl"><i class="ti ti-checklist"></i>Trabajos en curso</span></div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div class="fxc g8" style="padding:9px 10px;background:var(--ok-lt);border-radius:var(--r2)"><i class="ti ti-circle-check" style="color:var(--ok);font-size:15px;flex-shrink:0"></i><span style="font-size:11px;font-weight:600;color:var(--ok)">Pastillas Brembo instaladas</span></div>
+              <div class="fxc g8" style="padding:9px 10px;background:var(--ok-lt);border-radius:var(--r2)"><i class="ti ti-circle-check" style="color:var(--ok);font-size:15px;flex-shrink:0"></i><span style="font-size:11px;font-weight:600;color:var(--ok)">Sistema frenos purgado</span></div>
+              <div class="fxc g8" style="padding:9px 10px;background:var(--blue-lt);border-radius:var(--r2)"><i class="ti ti-loader-2" style="color:var(--blue);font-size:15px;flex-shrink:0;animation:spin 2s linear infinite"></i><span style="font-size:11px;font-weight:600;color:var(--blue)">Cambio de aceite en proceso</span></div>
+              <div class="fxc g8" style="padding:9px 10px;background:var(--g50);border-radius:var(--r2);border:1px solid var(--g100)"><i class="ti ti-clock" style="color:var(--g300);font-size:15px;flex-shrink:0"></i><span style="font-size:11px;color:var(--g400)">Limpieza válvula EGR</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ TRANSPARENCIA ══════════════════════ -->
+    <section class="screen" id="screen-transparencia">
+      <div class="ph">
+        <div class="pt">Transparencia del servicio</div>
+        <div class="ps">Evidencia fotográfica real de cada etapa · ABC-123 · Toyota Hilux 2021</div>
+      </div>
+
+      <!-- ── INDICADOR VISUAL DE AVANCE ── -->
+      <div style="background:var(--white);border:1px solid var(--g200);border-radius:var(--r3);padding:20px 24px;margin-bottom:20px;box-shadow:var(--s0)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px">
+          <div style="font-size:13px;font-weight:700;color:var(--g700);display:flex;align-items:center;gap:7px"><i class="ti ti-progress" style="color:var(--blue);font-size:16px"></i>Progreso del servicio</div>
+          <div style="font-family:var(--fd);font-size:20px;font-weight:800;color:var(--blue)">65% completado</div>
+        </div>
+        <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+          <div style="position:absolute;top:14px;left:0;right:0;height:3px;background:var(--g100);z-index:0;border-radius:3px">
+            <div style="height:100%;width:65%;background:linear-gradient(90deg,var(--blue-d),var(--blue-t));border-radius:3px;transition:width 1.2s ease"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;z-index:1">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--ok);border:3px solid var(--white);box-shadow:var(--s1);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px"><i class="ti ti-check"></i></div>
+            <span style="font-size:9px;font-weight:700;color:var(--ok);text-align:center;max-width:64px;line-height:1.3">Recepción</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;z-index:1">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--ok);border:3px solid var(--white);box-shadow:var(--s1);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px"><i class="ti ti-check"></i></div>
+            <span style="font-size:9px;font-weight:700;color:var(--ok);text-align:center;max-width:64px;line-height:1.3">Diagnóstico</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;z-index:1">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--ok);border:3px solid var(--white);box-shadow:var(--s1);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px"><i class="ti ti-check"></i></div>
+            <span style="font-size:9px;font-weight:700;color:var(--ok);text-align:center;max-width:64px;line-height:1.3">Inspección</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;z-index:1">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--blue);border:3px solid var(--white);box-shadow:0 0 0 3px var(--blue-md);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;animation:rp 2s infinite"><i class="ti ti-tool"></i></div>
+            <span style="font-size:9px;font-weight:700;color:var(--blue);text-align:center;max-width:64px;line-height:1.3">Reparación</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;z-index:1">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--g200);border:3px solid var(--white);box-shadow:var(--s0);display:flex;align-items:center;justify-content:center;color:var(--g400);font-size:12px"><i class="ti ti-shield-check"></i></div>
+            <span style="font-size:9px;color:var(--g400);text-align:center;max-width:64px;line-height:1.3">Control QC</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;z-index:1">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--g200);border:3px solid var(--white);box-shadow:var(--s0);display:flex;align-items:center;justify-content:center;color:var(--g400);font-size:12px"><i class="ti ti-car"></i></div>
+            <span style="font-size:9px;color:var(--g400);text-align:center;max-width:64px;line-height:1.3">Entrega</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── FILTROS POR ETAPA ── -->
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:20px">
+        <div style="font-size:11px;font-weight:700;color:var(--g400);letter-spacing:1px;text-transform:uppercase;margin-right:4px">Filtrar:</div>
+        <button class="ev-filter active" onclick="filterEv(this,'all')" style="padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;transition:.15s;background:var(--blue);border:1px solid var(--blue);color:#fff">Todas las etapas</button>
+        <button class="ev-filter" onclick="filterEv(this,'recepcion')" style="padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;transition:.15s;background:var(--white);border:1px solid var(--g200);color:var(--g500)">Recepción</button>
+        <button class="ev-filter" onclick="filterEv(this,'diagnostico')" style="padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;transition:.15s;background:var(--white);border:1px solid var(--g200);color:var(--g500)">Diagnóstico</button>
+        <button class="ev-filter" onclick="filterEv(this,'frenos')" style="padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;transition:.15s;background:var(--white);border:1px solid var(--g200);color:var(--g500)">Frenos</button>
+        <button class="ev-filter" onclick="filterEv(this,'motor')" style="padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;transition:.15s;background:var(--white);border:1px solid var(--g200);color:var(--g500)">Motor</button>
+        <button class="ev-filter" onclick="filterEv(this,'repuestos')" style="padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;transition:.15s;background:var(--white);border:1px solid var(--g200);color:var(--g500)">Repuestos</button>
+        <button class="ev-filter" onclick="filterEv(this,'entrega')" style="padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;transition:.15s;background:var(--white);border:1px solid var(--g200);color:var(--g500)">Entrega</button>
+      </div>
+
+      <!-- ── GALERÍA DE EVIDENCIAS ── -->
+      <div class="ev-grid mb24" id="ev-gallery">
+
+        <!-- 1. Recepción -->
+        <div class="ev-card" data-stage="recepcion" onclick="openLightbox(0)">
+          <div class="ev-img-wrap">
+            <!-- SVG: pickup truck entering workshop bay -->
+            <svg class="ev-img" viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:160px;object-fit:cover">
+              <defs><linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a3a5c"/><stop offset="100%" stop-color="#2d6491"/></linearGradient>
+              <linearGradient id="floor1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#222"/></linearGradient></defs>
+              <!-- background workshop -->
+              <rect width="700" height="320" fill="url(#sky1)"/>
+              <!-- workshop door/gate arch -->
+              <rect x="180" y="30" width="340" height="260" rx="4" fill="#0d2136"/>
+              <rect x="190" y="38" width="320" height="245" rx="3" fill="#0a1a2e"/>
+              <!-- floor markings -->
+              <rect x="0" y="265" width="700" height="55" fill="url(#floor1)"/>
+              <rect x="60" y="270" width="580" height="3" fill="#4a4a4a" rx="2"/>
+              <!-- yellow guide lines -->
+              <rect x="230" y="270" width="240" height="4" rx="2" fill="#f5c518" opacity=".6"/>
+              <!-- ceiling lights inside -->
+              <ellipse cx="280" cy="55" rx="18" ry="6" fill="#fff9c4" opacity=".7"/>
+              <ellipse cx="420" cy="55" rx="18" ry="6" fill="#fff9c4" opacity=".7"/>
+              <line x1="280" y1="38" x2="280" y2="55" stroke="#ccc" stroke-width="1.5"/>
+              <line x1="420" y1="38" x2="420" y2="55" stroke="#ccc" stroke-width="1.5"/>
+              <ellipse cx="280" cy="65" rx="28" ry="12" fill="#fffde7" opacity=".25"/>
+              <ellipse cx="420" cy="65" rx="28" ry="12" fill="#fffde7" opacity=".25"/>
+              <!-- Toyota Hilux pickup truck body -->
+              <g transform="translate(80,155)">
+                <!-- truck bed -->
+                <rect x="18" y="28" width="145" height="58" rx="4" fill="#1e4a7a"/>
+                <rect x="22" y="32" width="137" height="50" rx="3" fill="#1a3f6a"/>
+                <!-- cab -->
+                <rect x="155" y="12" width="180" height="74" rx="8" fill="#1e4a7a"/>
+                <!-- windshield -->
+                <rect x="175" y="18" width="100" height="40" rx="5" fill="#7fc4e8" opacity=".85"/>
+                <line x1="225" y1="18" x2="225" y2="58" stroke="#4a9cc0" stroke-width="1" opacity=".6"/>
+                <!-- rear window -->
+                <rect x="158" y="22" width="20" height="32" rx="3" fill="#5a9ab8" opacity=".7"/>
+                <!-- roof rack hint -->
+                <rect x="158" y="10" width="175" height="5" rx="2" fill="#2a5a8a"/>
+                <!-- hood -->
+                <rect x="330" y="38" width="105" height="48" rx="6" fill="#1e4a7a"/>
+                <!-- front grille -->
+                <rect x="425" y="48" width="18" height="32" rx="3" fill="#0d1f33"/>
+                <line x1="425" y1="55" x2="443" y2="55" stroke="#333" stroke-width="1.5"/>
+                <line x1="425" y1="62" x2="443" y2="62" stroke="#333" stroke-width="1.5"/>
+                <line x1="425" y1="69" x2="443" y2="69" stroke="#333" stroke-width="1.5"/>
+                <!-- headlight -->
+                <ellipse cx="438" cy="52" rx="7" ry="5" fill="#fff9c4" opacity=".9"/>
+                <!-- front bumper -->
+                <rect x="430" y="78" width="18" height="10" rx="3" fill="#0d1f33"/>
+                <!-- bottom chassis -->
+                <rect x="18" y="84" width="425" height="12" rx="3" fill="#0d1f33"/>
+                <!-- wheels -->
+                <circle cx="80" cy="104" r="28" fill="#1a1a1a"/>
+                <circle cx="80" cy="104" r="20" fill="#333"/>
+                <circle cx="80" cy="104" r="12" fill="#555"/>
+                <circle cx="80" cy="104" r="5" fill="#888"/>
+                <circle cx="360" cy="104" r="28" fill="#1a1a1a"/>
+                <circle cx="360" cy="104" r="20" fill="#333"/>
+                <circle cx="360" cy="104" r="12" fill="#555"/>
+                <circle cx="360" cy="104" r="5" fill="#888"/>
+              </g>
+              <!-- technician silhouette with clipboard -->
+              <g transform="translate(530,120)">
+                <ellipse cx="20" cy="14" rx="13" ry="14" fill="#4a7fa8"/>
+                <rect x="8" y="26" width="24" height="50" rx="5" fill="#2d5a7a"/>
+                <rect x="30" y="32" width="20" height="28" rx="3" fill="#e8e0d0"/>
+                <rect x="32" y="36" width="16" height="2" rx="1" fill="#555"/>
+                <rect x="32" y="41" width="16" height="2" rx="1" fill="#555"/>
+                <rect x="32" y="46" width="12" height="2" rx="1" fill="#555"/>
+                <rect x="8" y="76" width="10" height="32" rx="3" fill="#2d5a7a"/>
+                <rect x="22" y="76" width="10" height="32" rx="3" fill="#2d5a7a"/>
+              </g>
+              <!-- "RECEPCIÓN" sign on wall -->
+              <rect x="250" y="60" width="200" height="28" rx="4" fill="#005AA9" opacity=".8"/>
+              <text x="350" y="79" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="white" letter-spacing="2">RECEPCIÓN</text>
+              <!-- timestamp overlay bottom -->
+              <rect x="0" y="285" width="700" height="35" fill="rgba(0,0,0,0.55)"/>
+              <text x="16" y="308" font-family="monospace" font-size="12" fill="#aad4f5">30 MAY 2026 · 08:30 AM · INGRESO REGISTRADO ✓</text>
+            </svg>
+            <div class="ev-img-grad"></div>
+            <div class="ev-img-tag"><span class="tag tb" style="font-size:9px">01 · Recepción</span></div>
+            <div class="ev-img-status"><span class="tag tg">Completado</span></div>
+            <div style="position:absolute;bottom:10px;left:10px;width:28px;height:28px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)"><i class="ti ti-maximize" style="color:#fff;font-size:13px"></i></div>
+          </div>
+          <div class="ev-body">
+            <div class="ev-stage">Recepción del vehículo</div>
+            <div class="ev-desc">Registro de ingreso al taller. Check-in visual 360° del estado exterior e interior del vehículo antes de cualquier intervención.</div>
+            <div class="ev-meta">
+              <div class="ev-meta-item"><i class="ti ti-calendar"></i>30 May 2026</div>
+              <div class="ev-meta-item"><i class="ti ti-clock"></i>08:30 am</div>
+              <div class="ev-meta-item"><i class="ti ti-user"></i>Tec. González</div>
+            </div>
+            <div class="ev-obs">Vehículo recibido en buen estado general. Odómetro: 87,320 km. Ruido leve al frenar reportado por cliente. Aceite bajo nivel.</div>
+          </div>
+        </div>
+
+        <!-- 2. Diagnóstico electrónico -->
+        <div class="ev-card" data-stage="diagnostico" onclick="openLightbox(1)">
+          <div class="ev-img-wrap">
+            <!-- SVG: mechanic with OBD2 scanner and laptop showing fault codes -->
+            <svg class="ev-img" viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:160px">
+              <defs><linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1f2e"/><stop offset="100%" stop-color="#1a3a52"/></linearGradient></defs>
+              <rect width="700" height="320" fill="url(#bg2)"/>
+              <!-- workshop bench -->
+              <rect x="0" y="220" width="700" height="100" fill="#1a1a1a"/>
+              <rect x="0" y="218" width="700" height="8" fill="#2a2a2a"/>
+              <!-- laptop screen showing OBD codes -->
+              <rect x="260" y="110" width="200" height="130" rx="8" fill="#111" stroke="#444" stroke-width="2"/>
+              <rect x="268" y="118" width="184" height="112" rx="4" fill="#0a1628"/>
+              <!-- screen content: DTC codes -->
+              <rect x="272" y="122" width="176" height="18" rx="2" fill="#005AA9" opacity=".8"/>
+              <text x="360" y="135" text-anchor="middle" font-family="monospace" font-size="9" fill="white" font-weight="700">BOSCH KTS 560 · DIAGNÓSTICO</text>
+              <text x="276" y="152" font-family="monospace" font-size="8" fill="#ff5555">● P0401  EGR FLOW INSUFFICIENT</text>
+              <text x="276" y="164" font-family="monospace" font-size="8" fill="#ffaa00">● B0023  BRAKE PAD WEAR 15%</text>
+              <text x="276" y="176" font-family="monospace" font-size="8" fill="#55ff55">✓ P0001  ENGINE — NO FAULT</text>
+              <text x="276" y="188" font-family="monospace" font-size="8" fill="#55ff55">✓ P0700  TRANS — NO FAULT</text>
+              <text x="276" y="200" font-family="monospace" font-size="8" fill="#aaaaaa">─────────────────────────</text>
+              <text x="276" y="213" font-family="monospace" font-size="8" fill="#aaaaaa">TOTAL: 2 CODES · 87,320 KM</text>
+              <!-- laptop base -->
+              <rect x="245" y="238" width="230" height="10" rx="3" fill="#222" stroke="#333" stroke-width="1"/>
+              <!-- OBD2 device plugged in (cable and dongle) -->
+              <rect x="160" y="195" width="55" height="35" rx="5" fill="#1a1a1a" stroke="#555" stroke-width="2"/>
+              <rect x="163" y="198" width="49" height="29" rx="3" fill="#0d2a3d"/>
+              <text x="187" y="217" text-anchor="middle" font-family="monospace" font-size="7" fill="#55aaff">OBD2</text>
+              <!-- cable from OBD to dashboard area -->
+              <path d="M215 212 Q 260 220 320 240" stroke="#888" stroke-width="3" fill="none" stroke-dasharray="4 2"/>
+              <!-- OBD port on car dashboard (simplified) -->
+              <rect x="100" y="190" width="62" height="22" rx="3" fill="#2a2a2a" stroke="#555" stroke-width="1.5"/>
+              <text x="131" y="205" text-anchor="middle" font-family="monospace" font-size="7" fill="#888">OBD PORT</text>
+              <!-- cable detail -->
+              <rect x="155" y="207" width="8" height="5" rx="1" fill="#666"/>
+              <!-- Technician hands -->
+              <ellipse cx="192" cy="190" rx="12" ry="8" fill="#c8a882"/>
+              <ellipse cx="172" cy="192" rx="10" ry="7" fill="#c8a882"/>
+              <!-- scanner in hands -->
+              <rect x="162" y="182" width="42" height="28" rx="4" fill="#333" stroke="#666" stroke-width="1"/>
+              <rect x="165" y="185" width="36" height="18" rx="2" fill="#1a4a6a"/>
+              <!-- scan waveform on handheld -->
+              <polyline points="167,198 172,192 177,196 182,190 187,194 192,191 197,195 200,196" stroke="#00ff88" stroke-width="1.5" fill="none"/>
+              <!-- ambient glow from screen -->
+              <ellipse cx="360" cy="175" rx="90" ry="50" fill="#005AA9" opacity=".08"/>
+              <!-- timestamp -->
+              <rect x="0" y="285" width="700" height="35" fill="rgba(0,0,0,.6)"/>
+              <text x="16" y="308" font-family="monospace" font-size="12" fill="#aad4f5">30 MAY 2026 · 11:15 AM · TALLER BAHÍA 1 · Tec. HERRERA</text>
+            </svg>
+            <div class="ev-img-grad"></div>
+            <div class="ev-img-tag"><span class="tag tb" style="font-size:9px">02 · Diagnóstico</span></div>
+            <div class="ev-img-status"><span class="tag tg">Completado</span></div>
+            <div style="position:absolute;bottom:10px;left:10px;width:28px;height:28px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)"><i class="ti ti-maximize" style="color:#fff;font-size:13px"></i></div>
+          </div>
+          <div class="ev-body">
+            <div class="ev-stage">Diagnóstico electrónico Bosch KTS 560</div>
+            <div class="ev-desc">Técnico conectando escáner automotriz al puerto OBD2. Escaneo completo del sistema electrónico para lectura de códigos de falla.</div>
+            <div class="ev-meta">
+              <div class="ev-meta-item"><i class="ti ti-calendar"></i>30 May 2026</div>
+              <div class="ev-meta-item"><i class="ti ti-clock"></i>11:15 am</div>
+              <div class="ev-meta-item"><i class="ti ti-user"></i>Tec. Herrera</div>
+            </div>
+            <div class="ev-obs">Código P0401 detectado (EGR insuficiente). Pastillas al 15% de vida útil. Aceite degradado confirmado. Motor y caja sin fallas críticas.</div>
+          </div>
+        </div>
+
+        <!-- 3. Inspección de frenos -->
+        <div class="ev-card" data-stage="frenos" onclick="openLightbox(2)">
+          <div class="ev-img-wrap">
+            <!-- SVG: brake disc, caliper and pads close-up inspection -->
+            <svg class="ev-img" viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:160px">
+              <defs>
+                <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1c1c1c"/><stop offset="100%" stop-color="#2e2e2e"/></linearGradient>
+                <radialGradient id="discg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#5a5a5a"/><stop offset="60%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#222"/></radialGradient>
+              </defs>
+              <rect width="700" height="320" fill="url(#bg3)"/>
+              <!-- workshop floor hint -->
+              <rect x="0" y="270" width="700" height="50" fill="#1a1a1a"/>
+              <!-- BRAKE DISC (rotor) - main element, centered -->
+              <g transform="translate(350,155)">
+                <!-- outer rotor ring -->
+                <circle r="128" fill="url(#discg)" stroke="#555" stroke-width="2"/>
+                <!-- ventilation holes pattern -->
+                <circle r="110" fill="none" stroke="#444" stroke-width="14" stroke-dasharray="8 12"/>
+                <!-- inner hub -->
+                <circle r="60" fill="#2a2a2a" stroke="#555" stroke-width="3"/>
+                <circle r="40" fill="#1a1a1a" stroke="#444" stroke-width="2"/>
+                <!-- lug bolts -->
+                <circle cx="0" cy="-28" r="7" fill="#555" stroke="#333" stroke-width="1.5"/>
+                <circle cx="26" cy="14" r="7" fill="#555" stroke="#333" stroke-width="1.5"/>
+                <circle cx="-26" cy="14" r="7" fill="#555" stroke="#333" stroke-width="1.5"/>
+                <!-- wear grooves on rotor surface -->
+                <circle r="95" fill="none" stroke="#666" stroke-width="1" opacity=".5"/>
+                <circle r="88" fill="none" stroke="#666" stroke-width="1" opacity=".4"/>
+                <circle r="82" fill="none" stroke="#555" stroke-width="1" opacity=".3"/>
+                <!-- scoring marks (wear) -->
+                <line x1="-85" y1="-30" x2="-115" y2="-50" stroke="#888" stroke-width="0.8" opacity=".4"/>
+                <line x1="-80" y1="-40" x2="-110" y2="-55" stroke="#888" stroke-width="0.8" opacity=".3"/>
+              </g>
+              <!-- BRAKE CALIPER over the disc -->
+              <g transform="translate(460,90)">
+                <rect x="-25" y="0" width="90" height="100" rx="8" fill="#1a1a1a" stroke="#555" stroke-width="2"/>
+                <rect x="-18" y="8" width="76" height="84" rx="5" fill="#222" stroke="#444" stroke-width="1"/>
+                <!-- caliper bolts -->
+                <circle cx="-10" cy="20" r="6" fill="#444" stroke="#333" stroke-width="1"/>
+                <circle cx="-10" cy="80" r="6" fill="#444" stroke="#333" stroke-width="1"/>
+                <circle cx="66" cy="20" r="6" fill="#444" stroke="#333" stroke-width="1"/>
+                <circle cx="66" cy="80" r="6" fill="#444" stroke="#333" stroke-width="1"/>
+                <!-- WORN brake pad visible (red warning) -->
+                <rect x="5" y="25" width="55" height="50" rx="3" fill="#8b1a1a" stroke="#cc2222" stroke-width="2"/>
+                <rect x="9" y="29" width="47" height="15" rx="2" fill="#cc3333"/>
+                <text x="32" y="40" text-anchor="middle" font-family="monospace" font-size="7" fill="white" font-weight="700">15%</text>
+                <text x="32" y="50" text-anchor="middle" font-family="monospace" font-size="6" fill="#ffaaaa">DESGASTADA</text>
+                <!-- metal wear indicator line -->
+                <line x1="9" y1="44" x2="56" y2="44" stroke="#ff4444" stroke-width="1.5" stroke-dasharray="3 2"/>
+              </g>
+              <!-- measurement caliper tool -->
+              <g transform="translate(120,160)">
+                <rect x="0" y="0" width="120" height="12" rx="2" fill="#888" stroke="#666" stroke-width="1"/>
+                <rect x="0" y="0" width="45" height="24" rx="3" fill="#777" stroke="#555" stroke-width="1"/>
+                <rect x="100" y="0" width="22" height="24" rx="2" fill="#777" stroke="#555" stroke-width="1"/>
+                <rect x="20" y="10" width="2" height="18" fill="#555"/>
+                <rect x="110" y="10" width="2" height="18" fill="#555"/>
+                <!-- measurement display -->
+                <rect x="45" y="-24" width="55" height="20" rx="3" fill="#1a3a1a" stroke="#3a7a3a" stroke-width="1"/>
+                <text x="72" y="-10" text-anchor="middle" font-family="monospace" font-size="9" fill="#44ff44">2.1 mm</text>
+              </g>
+              <!-- WARNING label -->
+              <rect x="30" y="240" width="200" height="28" rx="5" fill="#cc2222" opacity=".9"/>
+              <text x="130" y="258" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="white">⚠ PASTILLAS CRÍTICAS 15%</text>
+              <!-- OK label for disc -->
+              <rect x="470" y="240" width="200" height="28" rx="5" fill="#1a4a1a" opacity=".9"/>
+              <text x="570" y="258" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#55ff55">✓ DISCO: DENTRO DE LÍMITE</text>
+              <!-- timestamp -->
+              <rect x="0" y="285" width="700" height="35" fill="rgba(0,0,0,.6)"/>
+              <text x="16" y="308" font-family="monospace" font-size="12" fill="#aad4f5">01 JUN 2026 · 09:00 AM · INSPECCIÓN FRENOS DELANTEROS · Ing. RAMOS</text>
+            </svg>
+            <div class="ev-img-grad"></div>
+            <div class="ev-img-tag"><span class="tag tb" style="font-size:9px">03 · Frenos</span></div>
+            <div class="ev-img-status"><span class="tag tg">Completado</span></div>
+            <div style="position:absolute;bottom:10px;left:10px;width:28px;height:28px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)"><i class="ti ti-maximize" style="color:#fff;font-size:13px"></i></div>
+          </div>
+          <div class="ev-body">
+            <div class="ev-stage">Inspección del sistema de frenos</div>
+            <div class="ev-desc">Desmontaje y medición de discos y pastillas delanteras. Comparación con especificaciones técnicas Toyota para el modelo 2021.</div>
+            <div class="ev-meta">
+              <div class="ev-meta-item"><i class="ti ti-calendar"></i>01 Jun 2026</div>
+              <div class="ev-meta-item"><i class="ti ti-clock"></i>09:00 am</div>
+              <div class="ev-meta-item"><i class="ti ti-user"></i>Ing. Ramos</div>
+            </div>
+            <div class="ev-obs">Pastillas delanteras con 15% de vida útil — reemplazo inmediato. Discos en límite mínimo permitido. Sistema de purga necesario.</div>
+          </div>
+        </div>
+
+        <!-- 4. Inspección de motor -->
+        <div class="ev-card" data-stage="motor" onclick="openLightbox(3)">
+          <div class="ev-img-wrap">
+            <!-- SVG: diesel engine bay top-down/angled view with components labeled -->
+            <svg class="ev-img" viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:160px">
+              <defs>
+                <linearGradient id="bg4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0f1a0f"/><stop offset="100%" stop-color="#1a2a1a"/></linearGradient>
+                <linearGradient id="eng4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#1a1a1a"/></linearGradient>
+              </defs>
+              <rect width="700" height="320" fill="url(#bg4)"/>
+              <!-- engine bay outline (hood open top view) -->
+              <rect x="80" y="20" width="540" height="270" rx="12" fill="#222" stroke="#444" stroke-width="2"/>
+              <!-- ENGINE BLOCK - center piece -->
+              <rect x="200" y="60" width="300" height="180" rx="8" fill="url(#eng4)" stroke="#555" stroke-width="2"/>
+              <!-- cylinder head cover -->
+              <rect x="215" y="75" width="270" height="80" rx="6" fill="#2a2a2a" stroke="#666" stroke-width="1.5"/>
+              <!-- valve cover bolts -->
+              <circle cx="230" cy="88" r="5" fill="#555" stroke="#333"/>
+              <circle cx="470" cy="88" r="5" fill="#555" stroke="#333"/>
+              <circle cx="230" cy="145" r="5" fill="#555" stroke="#333"/>
+              <circle cx="470" cy="145" r="5" fill="#555" stroke="#333"/>
+              <circle cx="350" cy="88" r="5" fill="#555" stroke="#333"/>
+              <circle cx="350" cy="145" r="5" fill="#555" stroke="#333"/>
+              <!-- ENGINE label -->
+              <text x="350" y="120" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#888">MOTOR 2.8L DIÉSEL · 4 CIL.</text>
+              <!-- EGR VALVE (labeled with warning) -->
+              <g transform="translate(155,90)">
+                <rect width="55" height="40" rx="5" fill="#3a1a1a" stroke="#cc4444" stroke-width="2"/>
+                <circle cx="27" cy="20" r="10" fill="#cc4444" opacity=".7"/>
+                <text x="27" y="15" text-anchor="middle" font-family="monospace" font-size="7" fill="white">EGR</text>
+                <text x="27" y="23" text-anchor="middle" font-family="monospace" font-size="6" fill="#ff8888">CARBÓN</text>
+                <!-- warning arrow -->
+                <text x="27" y="37" text-anchor="middle" font-family="monospace" font-size="9" fill="#ff4444">⚠</text>
+              </g>
+              <!-- hose from EGR to engine -->
+              <path d="M210,110 Q 215,110 215,115" stroke="#888" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <!-- AIR FILTER box -->
+              <rect x="480" y="70" width="110" height="65" rx="6" fill="#1a2a1a" stroke="#4a8a4a" stroke-width="2"/>
+              <text x="535" y="98" text-anchor="middle" font-family="monospace" font-size="8" fill="#55aa55">FILTRO</text>
+              <text x="535" y="110" text-anchor="middle" font-family="monospace" font-size="8" fill="#55aa55">AIRE</text>
+              <text x="535" y="122" text-anchor="middle" font-family="monospace" font-size="7" fill="#aaaaaa">OK ✓</text>
+              <!-- intake tube -->
+              <path d="M480,100 Q 470,100 470,115" stroke="#666" stroke-width="8" fill="none" stroke-linecap="round"/>
+              <!-- OIL CAP area -->
+              <g transform="translate(270,170)">
+                <circle r="20" fill="#2a1a0a" stroke="#cc8800" stroke-width="2"/>
+                <text x="0" y="4" text-anchor="middle" font-family="monospace" font-size="7" fill="#cc8800">ACEITE</text>
+                <text x="0" y="13" text-anchor="middle" font-family="monospace" font-size="6" fill="#ff8800">BAJO ⚠</text>
+              </g>
+              <!-- COOLANT reservoir -->
+              <g transform="translate(400,160)">
+                <rect x="-22" y="-15" width="44" height="38" rx="4" fill="#0a1a3a" stroke="#3a7aaa" stroke-width="1.5"/>
+                <text x="0" y="-3" text-anchor="middle" font-family="monospace" font-size="7" fill="#55aaff">COLANT</text>
+                <text x="0" y="6" text-anchor="middle" font-family="monospace" font-size="7" fill="#55ff55">OK ✓</text>
+                <!-- fluid level line -->
+                <line x1="-18" y1="12" x2="18" y2="12" stroke="#3a7aaa" stroke-width="1"/>
+                <rect x="-18" y="12" width="36" height="8" rx="2" fill="#1a3a6a" opacity=".7"/>
+              </g>
+              <!-- BATTERY -->
+              <g transform="translate(490,180)">
+                <rect x="-30" y="-18" width="60" height="42" rx="4" fill="#1a1a2a" stroke="#4a4a8a" stroke-width="1.5"/>
+                <text x="0" y="-5" text-anchor="middle" font-family="monospace" font-size="7" fill="#8888ff">BATERÍA</text>
+                <text x="0" y="5" text-anchor="middle" font-family="monospace" font-size="7" fill="#ffaa00">68% ⚠</text>
+                <!-- + - terminals -->
+                <circle cx="-14" cy="16" r="5" fill="#cc2222"/><text x="-14" y="19" text-anchor="middle" font-size="7" fill="white">+</text>
+                <circle cx="14" cy="16" r="5" fill="#333"/><text x="14" y="19" text-anchor="middle" font-size="7" fill="white">−</text>
+              </g>
+              <!-- mechanic hands / torch -->
+              <ellipse cx="150" cy="200" rx="15" ry="10" fill="#c8a882" opacity=".8"/>
+              <rect x="125" y="196" width="30" height="8" rx="4" fill="#888" opacity=".7"/>
+              <!-- flashlight beam -->
+              <path d="M140,195 Q 200,160 270,150" stroke="#fffde7" stroke-width="2" opacity=".3" fill="none"/>
+              <ellipse cx="270" cy="148" rx="30" ry="20" fill="#fffde7" opacity=".12"/>
+              <!-- timestamp -->
+              <rect x="0" y="285" width="700" height="35" fill="rgba(0,0,0,.6)"/>
+              <text x="16" y="308" font-family="monospace" font-size="12" fill="#aad4f5">01 JUN 2026 · 10:00 AM · INSPECCIÓN MOTOR 2.8L DIÉSEL · Ing. RAMOS</text>
+            </svg>
+            <div class="ev-img-grad"></div>
+            <div class="ev-img-tag"><span class="tag tb" style="font-size:9px">04 · Motor</span></div>
+            <div class="ev-img-status"><span class="tag tg">Completado</span></div>
+            <div style="position:absolute;bottom:10px;left:10px;width:28px;height:28px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)"><i class="ti ti-maximize" style="color:#fff;font-size:13px"></i></div>
+          </div>
+          <div class="ev-body">
+            <div class="ev-stage">Inspección del compartimiento de motor</div>
+            <div class="ev-desc">Revisión completa del motor 2.8L diésel 4-cilindros: nivel de fluidos, estado de mangueras, correa de distribución, filtros y válvula EGR.</div>
+            <div class="ev-meta">
+              <div class="ev-meta-item"><i class="ti ti-calendar"></i>01 Jun 2026</div>
+              <div class="ev-meta-item"><i class="ti ti-clock"></i>10:00 am</div>
+              <div class="ev-meta-item"><i class="ti ti-user"></i>Ing. Ramos</div>
+            </div>
+            <div class="ev-obs">Motor en excelente estado general. Aceite degradado (reemplazar). Válvula EGR con acumulación de carbón. Mangueras y correa OK.</div>
+          </div>
+        </div>
+
+        <!-- 5. Instalación de repuestos -->
+        <div class="ev-card" data-stage="repuestos" onclick="openLightbox(4)">
+          <div class="ev-img-wrap">
+            <!-- SVG: new certified parts on workshop bench - Brembo pads, Castrol oil, MANN filter -->
+            <svg class="ev-img" viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:160px">
+              <defs>
+                <linearGradient id="bg5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a1208"/><stop offset="100%" stop-color="#2a1e0a"/></linearGradient>
+                <linearGradient id="bench5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5a3a1a"/><stop offset="100%" stop-color="#3a2010"/></linearGradient>
+              </defs>
+              <rect width="700" height="320" fill="url(#bg5)"/>
+              <!-- workshop bench surface -->
+              <rect x="0" y="220" width="700" height="100" fill="url(#bench5)"/>
+              <rect x="0" y="218" width="700" height="6" fill="#6a4a1a"/>
+              <!-- bench edge highlight -->
+              <rect x="0" y="216" width="700" height="3" fill="#8a6a2a" opacity=".5"/>
+              <!-- ── BREMBO BRAKE PADS BOX (left) ── -->
+              <g transform="translate(60,100)">
+                <!-- box -->
+                <rect width="140" height="100" rx="6" fill="#cc0000"/>
+                <rect x="4" y="4" width="132" height="92" rx="5" fill="#dd1111"/>
+                <!-- BREMBO logo area -->
+                <rect x="10" y="10" width="120" height="30" rx="3" fill="#aa0000"/>
+                <text x="70" y="30" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="900" fill="white" letter-spacing="3">BREMBO</text>
+                <text x="70" y="52" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffdddd">BRAKE PADS</text>
+                <text x="70" y="64" text-anchor="middle" font-family="monospace" font-size="9" fill="white" font-weight="700">P56080</text>
+                <text x="70" y="78" text-anchor="middle" font-family="monospace" font-size="8" fill="#ffaaaa">Toyota Hilux 2021</text>
+                <!-- NEW badge -->
+                <rect x="90" y="8" width="44" height="16" rx="3" fill="#00aa44"/>
+                <text x="112" y="20" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="white">NUEVO ✓</text>
+                <!-- shadow -->
+                <rect y="100" width="140" height="8" rx="4" fill="#000" opacity=".3"/>
+              </g>
+              <!-- ── CASTROL OIL BOTTLE (center) ── -->
+              <g transform="translate(285,70)">
+                <!-- bottle shape -->
+                <rect x="15" y="0" width="70" height="20" rx="8" fill="#1a1a1a"/>
+                <!-- bottle body -->
+                <rect x="0" y="18" width="100" height="140" rx="10" fill="#cc6600"/>
+                <rect x="5" y="22" width="90" height="130" rx="8" fill="#dd7700"/>
+                <!-- label -->
+                <rect x="8" y="35" width="84" height="75" rx="5" fill="white"/>
+                <text x="50" y="55" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="900" fill="#cc3300" letter-spacing="1">CASTROL</text>
+                <text x="50" y="67" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="900" fill="#003388">EDGE</text>
+                <text x="50" y="79" text-anchor="middle" font-family="monospace" font-size="8" fill="#333">5W-30 Full Synth</text>
+                <text x="50" y="91" text-anchor="middle" font-family="monospace" font-size="8" fill="#555">5 LITROS</text>
+                <text x="50" y="103" text-anchor="middle" font-family="monospace" font-size="7" fill="#888">LONGLIFE III</text>
+                <!-- volume bar -->
+                <rect x="10" y="118" width="80" height="12" rx="3" fill="#eeeeee" stroke="#ccc" stroke-width="1"/>
+                <rect x="10" y="118" width="75" height="12" rx="3" fill="#cc6600" opacity=".6"/>
+                <text x="50" y="128" text-anchor="middle" font-family="monospace" font-size="7" fill="#333">● SELLADO</text>
+                <!-- shadow -->
+                <rect y="156" width="100" height="8" rx="4" fill="#000" opacity=".25"/>
+              </g>
+              <!-- ── MANN OIL FILTER (right) ── -->
+              <g transform="translate(490,90)">
+                <!-- cylinder filter shape -->
+                <ellipse cx="60" cy="12" rx="52" ry="12" fill="#cc7700"/>
+                <rect x="8" y="10" width="104" height="110" fill="#dd8800"/>
+                <ellipse cx="60" cy="120" rx="52" ry="12" fill="#bb6600"/>
+                <!-- label band -->
+                <rect x="12" y="30" width="96" height="70" fill="white"/>
+                <text x="60" y="50" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="900" fill="#cc5500" letter-spacing="1">MANN</text>
+                <text x="60" y="63" text-anchor="middle" font-family="monospace" font-size="8" fill="#333">OIL FILTER</text>
+                <text x="60" y="75" text-anchor="middle" font-family="monospace" font-size="10" font-weight="700" fill="#003388">HU612/2X</text>
+                <text x="60" y="88" text-anchor="middle" font-family="monospace" font-size="7" fill="#888">Toyota/Nissan Diesel</text>
+                <!-- thread hex on bottom -->
+                <polygon points="45,108 75,108 80,115 75,122 45,122 40,115" fill="#aa5500" stroke="#cc6600" stroke-width="1"/>
+                <text x="60" y="118" text-anchor="middle" font-family="monospace" font-size="7" fill="#ffcc88">3/4"-16 UNF</text>
+                <!-- shadow -->
+                <rect y="130" width="120" height="7" rx="4" fill="#000" opacity=".25"/>
+              </g>
+              <!-- QR code symbol (authenticity) -->
+              <g transform="translate(30,230)">
+                <rect width="36" height="36" rx="3" fill="white"/>
+                <rect x="4" y="4" width="12" height="12" fill="#333"/>
+                <rect x="20" y="4" width="12" height="12" fill="#333"/>
+                <rect x="4" y="20" width="12" height="12" fill="#333"/>
+                <rect x="22" y="22" width="5" height="5" fill="#333"/>
+                <rect x="29" y="22" width="5" height="5" fill="#333"/>
+                <rect x="22" y="29" width="5" height="5" fill="#333"/>
+              </g>
+              <text x="74" y="253" font-family="monospace" font-size="9" fill="#aaaaaa">Repuestos verificados · Orig.</text>
+              <!-- check marks above parts -->
+              <text x="125" y="92" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#44ff44">✓</text>
+              <text x="335" y="62" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#44ff44">✓</text>
+              <text x="550" y="82" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#44ff44">✓</text>
+              <!-- timestamp -->
+              <rect x="0" y="285" width="700" height="35" fill="rgba(0,0,0,.6)"/>
+              <text x="16" y="308" font-family="monospace" font-size="12" fill="#aad4f5">01 JUN 2026 · 11:00 AM · REPUESTOS INSTALADOS · Ing. RAMOS</text>
+            </svg>
+            <div class="ev-img-grad"></div>
+            <div class="ev-img-tag"><span class="tag tb" style="font-size:9px">05 · Repuestos</span></div>
+            <div class="ev-img-status"><span class="tag tw">En proceso</span></div>
+            <div style="position:absolute;bottom:10px;left:10px;width:28px;height:28px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)"><i class="ti ti-maximize" style="color:#fff;font-size:13px"></i></div>
+          </div>
+          <div class="ev-body">
+            <div class="ev-stage">Instalación de repuestos certificados</div>
+            <div class="ev-desc">Piezas nuevas originales verificadas: Pastillas Brembo P56080, aceite Castrol EDGE 5W-30 sintético 5L y filtro MANN HU612/2X.</div>
+            <div class="ev-meta">
+              <div class="ev-meta-item"><i class="ti ti-calendar"></i>01 Jun 2026</div>
+              <div class="ev-meta-item"><i class="ti ti-clock"></i>11:00 am</div>
+              <div class="ev-meta-item"><i class="ti ti-user"></i>Ing. Ramos</div>
+            </div>
+            <div class="ev-obs">Repuestos originales con código QR de autenticidad verificado. Pastillas instaladas, sistema purgado y calibrado en banco de prueba.</div>
+          </div>
+        </div>
+
+        <!-- 6. Vehículo listo para entrega -->
+        <div class="ev-card" data-stage="entrega" onclick="openLightbox(5)">
+          <div class="ev-img-wrap">
+            <!-- SVG: clean Hilux in workshop with QC checklist and delivery ready badge -->
+            <svg class="ev-img" viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:160px">
+              <defs>
+                <linearGradient id="bg6" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a1f0a"/><stop offset="100%" stop-color="#1a3a1a"/></linearGradient>
+                <linearGradient id="hilux6" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2255aa"/><stop offset="100%" stop-color="#1a3a7a"/></linearGradient>
+              </defs>
+              <rect width="700" height="320" fill="url(#bg6)"/>
+              <!-- floor / clean bay -->
+              <rect x="0" y="255" width="700" height="65" fill="#1a2a1a"/>
+              <rect x="0" y="253" width="700" height="5" fill="#2a4a2a"/>
+              <!-- green floor lines (clean bay) -->
+              <rect x="100" y="258" width="500" height="3" rx="2" fill="#3a8a3a" opacity=".5"/>
+              <rect x="150" y="265" width="400" height="2" rx="1" fill="#2a6a2a" opacity=".3"/>
+              <!-- ── TOYOTA HILUX (clean, full paint) ── -->
+              <g transform="translate(60,130)">
+                <!-- truck bed -->
+                <rect x="20" y="28" width="155" height="65" rx="6" fill="url(#hilux6)"/>
+                <rect x="24" y="32" width="147" height="57" rx="4" fill="#1e4a8a"/>
+                <!-- bed cover -->
+                <rect x="24" y="32" width="147" height="15" rx="3" fill="#1a3a7a"/>
+                <!-- cab -->
+                <rect x="168" y="10" width="190" height="83" rx="10" fill="url(#hilux6)"/>
+                <!-- windshield clean/clear -->
+                <rect x="185" y="16" width="108" height="46" rx="6" fill="#9dd8f5" opacity=".9"/>
+                <line x1="239" y1="16" x2="239" y2="62" stroke="#7ab8d8" stroke-width="1.5" opacity=".7"/>
+                <!-- A-pillar -->
+                <rect x="183" y="14" width="8" height="50" rx="3" fill="#1a3a7a"/>
+                <rect x="291" y="14" width="8" height="50" rx="3" fill="#1a3a7a"/>
+                <!-- rear window -->
+                <rect x="170" y="20" width="18" height="38" rx="4" fill="#7ab8d8" opacity=".8"/>
+                <!-- roof -->
+                <rect x="168" y="8" width="190" height="8" rx="4" fill="#2255aa"/>
+                <!-- hood clean -->
+                <rect x="353" y="36" width="120" height="57" rx="8" fill="url(#hilux6)"/>
+                <!-- grille clean (silver) -->
+                <rect x="462" y="50" width="22" height="36" rx="4" fill="#0d1f33"/>
+                <line x1="462" y1="58" x2="484" y2="58" stroke="#3a6aaa" stroke-width="2"/>
+                <line x1="462" y1="65" x2="484" y2="65" stroke="#3a6aaa" stroke-width="2"/>
+                <line x1="462" y1="72" x2="484" y2="72" stroke="#3a6aaa" stroke-width="2"/>
+                <!-- Toyota badge -->
+                <ellipse cx="472" cy="44" rx="8" ry="5" fill="#cc0000" opacity=".8"/>
+                <!-- headlights ON (delivery mode) -->
+                <ellipse cx="480" cy="52" rx="9" ry="6" fill="#fff9c4"/>
+                <ellipse cx="480" cy="52" rx="6" ry="4" fill="#fffde7"/>
+                <!-- front bumper painted -->
+                <rect x="460" y="86" width="26" height="8" rx="3" fill="#1e4a8a"/>
+                <!-- chassis -->
+                <rect x="20" y="91" width="460" height="14" rx="4" fill="#0d1f33"/>
+                <!-- WHEELS clean with shine -->
+                <circle cx="88" cy="116" r="32" fill="#1a1a1a"/>
+                <circle cx="88" cy="116" r="24" fill="#2a2a2a"/>
+                <circle cx="88" cy="116" r="16" fill="#888" opacity=".7"/>
+                <circle cx="88" cy="116" r="7" fill="#aaa"/>
+                <!-- wheel shine -->
+                <ellipse cx="80" cy="108" rx="5" ry="3" fill="white" opacity=".3" transform="rotate(-30 80 108)"/>
+                <circle cx="385" cy="116" r="32" fill="#1a1a1a"/>
+                <circle cx="385" cy="116" r="24" fill="#2a2a2a"/>
+                <circle cx="385" cy="116" r="16" fill="#888" opacity=".7"/>
+                <circle cx="385" cy="116" r="7" fill="#aaa"/>
+                <ellipse cx="377" cy="108" rx="5" ry="3" fill="white" opacity=".3" transform="rotate(-30 377 108)"/>
+                <!-- reflection shine on cab roof -->
+                <ellipse cx="240" cy="12" rx="60" ry="5" fill="white" opacity=".15"/>
+              </g>
+              <!-- ── QC CHECKLIST panel ── -->
+              <g transform="translate(510,40)">
+                <rect width="168" height="200" rx="8" fill="#0d1f0d" stroke="#2a6a2a" stroke-width="2"/>
+                <rect x="4" y="4" width="160" height="192" rx="6" fill="#0f230f"/>
+                <!-- header -->
+                <rect x="4" y="4" width="160" height="30" rx="6" fill="#1a4a1a"/>
+                <text x="84" y="14" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="#55ff55" letter-spacing="1">CONTROL CALIDAD</text>
+                <text x="84" y="26" text-anchor="middle" font-family="monospace" font-size="7" fill="#aaaaaa">ABC-123 · 05 Jun 2026</text>
+                <!-- checklist items -->
+                <text x="16" y="52" font-family="monospace" font-size="9" fill="#55ff55">✓ Frenos delanteros</text>
+                <text x="16" y="66" font-family="monospace" font-size="9" fill="#55ff55">✓ Cambio de aceite</text>
+                <text x="16" y="80" font-family="monospace" font-size="9" fill="#55ff55">✓ Filtro aceite</text>
+                <text x="16" y="94" font-family="monospace" font-size="9" fill="#55ff55">✓ Purga frenos</text>
+                <text x="16" y="108" font-family="monospace" font-size="9" fill="#55ff55">✓ Limpieza EGR</text>
+                <text x="16" y="122" font-family="monospace" font-size="9" fill="#55ff55">✓ Prueba de ruta</text>
+                <text x="16" y="136" font-family="monospace" font-size="9" fill="#55ff55">✓ Limpieza exterior</text>
+                <line x1="8" y1="148" x2="160" y2="148" stroke="#2a5a2a" stroke-width="1"/>
+                <text x="84" y="163" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#44ff44">7/7 APROBADO</text>
+                <!-- big checkmark -->
+                <text x="84" y="190" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#44ff44">✓</text>
+              </g>
+              <!-- LISTO PARA ENTREGA badge -->
+              <rect x="80" y="40" width="240" height="40" rx="8" fill="#1a4a1a" stroke="#3a8a3a" stroke-width="2"/>
+              <text x="200" y="57" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#55ff55" letter-spacing="1">🏁 LISTO PARA ENTREGA</text>
+              <text x="200" y="72" text-anchor="middle" font-family="monospace" font-size="9" fill="#aaaaaa">05 Jun 2026 · 10:00 AM · ABC-123</text>
+              <!-- timestamp -->
+              <rect x="0" y="285" width="700" height="35" fill="rgba(0,0,0,.6)"/>
+              <text x="16" y="308" font-family="monospace" font-size="12" fill="#aad4f5">05 JUN 2026 · 10:00 AM · ENTREGA PENDIENTE · QC SUPERVISOR</text>
+            </svg>
+            <div class="ev-img-grad"></div>
+            <div class="ev-img-tag"><span class="tag tb" style="font-size:9px">06 · Entrega</span></div>
+            <div class="ev-img-status"><span class="tag tgr">Pendiente</span></div>
+            <div style="position:absolute;bottom:10px;left:10px;width:28px;height:28px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)"><i class="ti ti-maximize" style="color:#fff;font-size:13px"></i></div>
+          </div>
+          <div class="ev-body">
+            <div class="ev-stage">Vehículo listo para entrega</div>
+            <div class="ev-desc">Fotografía final del vehículo post-servicio, limpieza interior y exterior, control de calidad y prueba de ruta completada.</div>
+            <div class="ev-meta">
+              <div class="ev-meta-item"><i class="ti ti-calendar"></i>05 Jun 2026</div>
+              <div class="ev-meta-item"><i class="ti ti-clock"></i>10:00 am</div>
+              <div class="ev-meta-item"><i class="ti ti-user"></i>QC Supervisor</div>
+            </div>
+            <div class="ev-obs" style="background:var(--g50);border-left-color:var(--g300);color:var(--g500)">Pendiente de control de calidad final y prueba de ruta. Estimado: 05 Jun 2026 — 10:00 am.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ANTES / DESPUÉS -->
+      <div class="ba-container mb24">
+        <div class="ba-hdr">
+          <div>
+            <div class="ba-hdr-title"><i class="ti ti-arrows-diff" style="margin-right:8px"></i>Comparación Antes / Después</div>
+            <div class="ba-hdr-sub">Sistema de frenos delanteros · Toyota Hilux ABC-123</div>
+          </div>
+          <span class="tag" style="background:rgba(255,255,255,.15);color:#fff;font-size:10px"><i class="ti ti-shield-check"></i> Garantía 6 meses</span>
+        </div>
+        <div class="ba-body">
+          <div class="ba-cols">
+            <div class="ba-side">
+              <div class="ba-badge bf"><i class="ti ti-alert-triangle"></i>ANTES · 30 May 2026</div>
+              <svg class="ba-img" viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:190px;border-radius:var(--r);border:1px solid var(--g200)">
+                <defs><radialGradient id="discba1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#4a4a4a"/><stop offset="100%" stop-color="#1a1a1a"/></radialGradient></defs>
+                <rect width="400" height="190" fill="#1c1c1c"/>
+                <circle cx="155" cy="98" r="72" fill="url(#discba1)" stroke="#444" stroke-width="2"/>
+                <circle cx="155" cy="98" r="62" fill="none" stroke="#333" stroke-width="10" stroke-dasharray="6 10"/>
+                <circle cx="155" cy="98" r="34" fill="#111" stroke="#444" stroke-width="2"/>
+                <line x1="112" y1="52" x2="128" y2="72" stroke="#666" stroke-width="2" opacity=".7"/>
+                <line x1="104" y1="64" x2="122" y2="82" stroke="#555" stroke-width="1.5" opacity=".5"/>
+                <line x1="188" y1="128" x2="204" y2="144" stroke="#666" stroke-width="2" opacity=".6"/>
+                <circle cx="155" cy="98" r="76" fill="none" stroke="#880000" stroke-width="2" stroke-dasharray="8 4" opacity=".6"/>
+                <rect x="262" y="52" width="100" height="90" rx="6" fill="#3a1a1a" stroke="#cc2222" stroke-width="2"/>
+                <rect x="268" y="58" width="88" height="38" rx="4" fill="#660000"/>
+                <text x="312" y="72" text-anchor="middle" font-family="monospace" font-size="9" fill="#ff4444" font-weight="700">15% VIDA</text>
+                <text x="312" y="85" text-anchor="middle" font-family="monospace" font-size="8" fill="#ffaaaa">MUY DESGASTADA</text>
+                <rect x="268" y="100" width="88" height="8" rx="2" fill="#888"/>
+                <text x="312" y="108" text-anchor="middle" font-family="monospace" font-size="6" fill="#ff8888">METAL EXPUESTO</text>
+                <text x="312" y="132" text-anchor="middle" font-family="sans-serif" font-size="28" fill="#ff3333">⚠</text>
+                <rect x="10" y="158" width="380" height="24" rx="4" fill="#8b0000" opacity=".9"/>
+                <text x="200" y="174" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="white">⚠ RIESGO CRÍTICO — REEMPLAZAR URGENTE</text>
+              </svg>
+              <div class="ba-caption">Pastillas de freno desgastadas al <strong style="color:var(--er)">15%</strong> de vida útil. Nivel crítico detectado el 30/05/2026. Ruido metálico al frenar. Riesgo de seguridad elevado. Discos rozando metal con metal.</div>
+            </div>
+            <div class="ba-sep"><div class="ba-sep-line"></div><div class="ba-sep-vs">VS</div><div class="ba-sep-line"></div></div>
+            <div class="ba-side">
+              <div class="ba-badge ba"><i class="ti ti-check"></i>DESPUÉS · 01 Jun 2026</div>
+              <svg class="ba-img" viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:190px;border-radius:var(--r);border:1px solid var(--g200)">
+                <defs><radialGradient id="discba2" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#6a6a6a"/><stop offset="100%" stop-color="#2a2a2a"/></radialGradient></defs>
+                <rect width="400" height="190" fill="#111"/>
+                <circle cx="155" cy="98" r="72" fill="url(#discba2)" stroke="#666" stroke-width="2"/>
+                <circle cx="155" cy="98" r="62" fill="none" stroke="#555" stroke-width="10" stroke-dasharray="6 10"/>
+                <circle cx="155" cy="98" r="34" fill="#222" stroke="#555" stroke-width="2"/>
+                <circle cx="155" cy="98" r="76" fill="none" stroke="#44aa44" stroke-width="2" stroke-dasharray="12 4" opacity=".7"/>
+                <ellipse cx="130" cy="72" rx="15" ry="8" fill="white" opacity=".1" transform="rotate(-30 130 72)"/>
+                <rect x="260" y="50" width="104" height="92" rx="6" fill="#1a4a1a" stroke="#44aa44" stroke-width="2"/>
+                <rect x="266" y="56" width="92" height="42" rx="4" fill="#cc0000"/>
+                <text x="312" y="70" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="900" fill="white" letter-spacing="1">BREMBO</text>
+                <text x="312" y="82" text-anchor="middle" font-family="monospace" font-size="8" fill="#ffdddd">P56080 NUEVA</text>
+                <rect x="266" y="102" width="92" height="12" rx="3" fill="#44aa44" opacity=".85"/>
+                <text x="312" y="112" text-anchor="middle" font-family="monospace" font-size="7" fill="white" font-weight="700">100% VIDA ÚTIL</text>
+                <text x="312" y="136" text-anchor="middle" font-family="sans-serif" font-size="28" fill="#44ff44">✓</text>
+                <rect x="10" y="158" width="380" height="24" rx="4" fill="#1a4a1a" opacity=".95"/>
+                <text x="200" y="174" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#55ff55">✓ SISTEMA AL 100% · GARANTÍA 6 MESES</text>
+              </svg>
+              <div class="ba-caption">Pastillas Brembo P56080 nuevas instaladas. Sistema de frenos al <strong style="color:var(--ok)">100%</strong>. Purga completa del circuito hidráulico. Calibrado y verificado en banco el 01/06/2026.</div>
+            </div>
+          </div>
+        </div>
+        <div class="ba-footer">
+          <i class="ti ti-shield-check"></i>
+          <div>
+            <div class="ba-footer-t">Garantía de 6 meses o 10,000 km sobre este trabajo</div>
+            <div class="ba-footer-s">Cubre repuestos instalados y mano de obra. No aplica a daños por uso inadecuado o accidentes.</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── LIGHTBOX ── -->
+    <div id="lb-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)" onclick="closeLightbox(event)">
+      <div style="max-width:900px;width:100%;background:var(--white);border-radius:var(--r3);overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.5);position:relative" onclick="event.stopPropagation()">
+        <div style="position:relative;background:var(--blue-d)">
+          <div id="lb-img-wrap" style="width:100%;max-height:480px;overflow:hidden;display:block"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,20,50,.8) 100%)"></div>
+          <div style="position:absolute;top:14px;right:14px;display:flex;gap:8px">
+            <button onclick="lbPrev()" style="width:36px;height:36px;border-radius:var(--r2);background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:15px;cursor:pointer;backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center"><i class="ti ti-chevron-left"></i></button>
+            <button onclick="lbNext()" style="width:36px;height:36px;border-radius:var(--r2);background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:15px;cursor:pointer;backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center"><i class="ti ti-chevron-right"></i></button>
+            <button onclick="closeLightbox()" style="width:36px;height:36px;border-radius:var(--r2);background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:15px;cursor:pointer;backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center"><i class="ti ti-x"></i></button>
+          </div>
+          <div style="position:absolute;bottom:14px;left:14px"><span id="lb-tag" class="tag tb" style="font-size:9px"></span></div>
+        </div>
+        <div style="padding:20px 24px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;gap:12px;flex-wrap:wrap">
+            <div>
+              <div id="lb-title" style="font-family:var(--fd);font-size:17px;font-weight:700;color:var(--g900);margin-bottom:3px"></div>
+              <div id="lb-meta" style="font-size:11px;color:var(--g400);display:flex;gap:14px;flex-wrap:wrap"></div>
+            </div>
+            <span id="lb-status" class="tag"></span>
+          </div>
+          <div id="lb-desc" style="font-size:12px;color:var(--g500);line-height:1.6;margin-bottom:10px"></div>
+          <div id="lb-obs" style="padding:10px 12px;background:var(--blue-lt);border-left:2px solid var(--blue);border-radius:0 var(--r2) var(--r2) 0;font-size:11px;color:var(--blue-d);line-height:1.5"></div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px" id="lb-dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════ HISTORIAL ══════════════════════ -->
+    <section class="screen" id="screen-historial">
+      <div class="ph"><div class="pt">Historial de mantenimientos</div><div class="ps" id="hist-sub">ABC-123 · Toyota Hilux 2021 · 12 servicios registrados</div></div>
+      <div class="mgrid">
+        <div class="mc"><div class="mi mi-b"><i class="ti ti-list-check"></i></div><div><div class="mv">12</div><div class="ml">Total servicios</div></div></div>
+        <div class="mc"><div class="mi mi-g"><i class="ti ti-tools"></i></div><div><div class="mv">8</div><div class="ml">Preventivos</div></div></div>
+        <div class="mc"><div class="mi mi-w"><i class="ti ti-urgent"></i></div><div><div class="mv">4</div><div class="ml">Correctivos</div></div></div>
+        <div class="mc"><div class="mi mi-b"><i class="ti ti-currency-sol"></i></div><div><div class="mv">S/ 8,240</div><div class="ml">Inversión total</div></div></div>
+      </div>
+      <div class="hf-bar">
+        <button class="hf active" onclick="hf(this)">Todos</button>
+        <button class="hf" onclick="hf(this)">2026</button>
+        <button class="hf" onclick="hf(this)">2025</button>
+        <button class="hf" onclick="hf(this)">2024</button>
+        <button class="hf" onclick="hf(this)">Preventivo</button>
+        <button class="hf" onclick="hf(this)">Correctivo</button>
+        <div class="hsearch"><i class="ti ti-search"></i><input type="text" placeholder="Buscar servicio…"></div>
+      </div>
+      <div class="card cp">
+        <div style="display:flex;flex-direction:column">
+          <div class="hrow"><div class="hdt"><div class="hdty">01 Jun</div><div class="hdtm">2026</div></div><div class="hdot" style="background:var(--blue);box-shadow:0 0 0 3px var(--blue-md)"></div><div class="hbody"><div class="htitle">Mantenimiento correctivo + frenos</div><div class="htags"><span class="tag tb">En proceso</span><span class="tag tw">Correctivo</span></div><div class="hdetail">87,420 km · Ing. Ramos · Brembo P56080 + Aceite Castrol + Diagnóstico EGR · Garantía 6 meses</div></div><div class="hcost">S/ 1,469</div></div>
+          <div class="hrow"><div class="hdt"><div class="hdty">12 Feb</div><div class="hdtm">2026</div></div><div class="hdot" style="background:var(--ok)"></div><div class="hbody"><div class="htitle">Mantenimiento preventivo 80,000 km</div><div class="htags"><span class="tag tg">Completado</span><span class="tag tgr">Preventivo</span></div><div class="hdetail">80,100 km · Tec. Herrera · Aceite, filtros aire/comb., bujías precalent. · Garantía 10,000 km</div></div><div class="hcost">S/ 920</div></div>
+          <div class="hrow"><div class="hdt"><div class="hdty">08 Oct</div><div class="hdtm">2025</div></div><div class="hdot" style="background:var(--ok)"></div><div class="hbody"><div class="htitle">Diagnóstico + reparación suspensión delantera</div><div class="htags"><span class="tag tg">Completado</span><span class="tag tw">Correctivo</span></div><div class="hdetail">74,320 km · Ing. Ramos · Bujes barra estab. + rótulas · Garantía 6 meses</div></div><div class="hcost">S/ 1,380</div></div>
+          <div class="hrow"><div class="hdt"><div class="hdty">15 Jun</div><div class="hdtm">2025</div></div><div class="hdot" style="background:var(--ok)"></div><div class="hbody"><div class="htitle">Mantenimiento preventivo 70,000 km</div><div class="htags"><span class="tag tg">Completado</span><span class="tag tgr">Preventivo</span></div><div class="hdetail">70,050 km · Tec. Herrera · Aceite, filtros, revisión frenos y batería</div></div><div class="hcost">S/ 780</div></div>
+          <div class="hrow"><div class="hdt"><div class="hdty">03 Feb</div><div class="hdtm">2025</div></div><div class="hdot" style="background:var(--ok)"></div><div class="hbody"><div class="htitle">Servicio caja de transferencia</div><div class="htags"><span class="tag tg">Completado</span><span class="tag tw">Correctivo</span></div><div class="hdetail">65,800 km · Ing. Ramos · Aceite caja + revisión transmisión</div></div><div class="hcost">S/ 650</div></div>
+          <div class="hrow"><div class="hdt"><div class="hdty">20 Sep</div><div class="hdtm">2024</div></div><div class="hdot" style="background:var(--ok)"></div><div class="hbody"><div class="htitle">Mantenimiento preventivo 60,000 km</div><div class="htags"><span class="tag tg">Completado</span><span class="tag tgr">Preventivo</span></div><div class="hdetail">60,120 km · Kit: aceite, filtros, líquido frenos · Garantía 10,000 km</div></div><div class="hcost">S/ 850</div></div>
+          <div class="hrow"><div class="hdt"><div class="hdty">05 May</div><div class="hdtm">2024</div></div><div class="hdot" style="background:var(--ok)"></div><div class="hbody"><div class="htitle">Diagnóstico + reparación sistema EGR</div><div class="htags"><span class="tag tg">Completado</span><span class="tag tw">Correctivo</span></div><div class="hdetail">55,600 km · Ing. Ramos · Limpieza válvula EGR + sensor MAP</div></div><div class="hcost">S/ 780</div></div>
+        </div>
+        <div style="padding:12px 10px;text-align:center;border-top:1px solid var(--g100)">
+          <button class="btn bg bsm" style="margin:0 auto"><i class="ti ti-chevron-down"></i>Ver 5 servicios más</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ REPORTES ══════════════════════ -->
+    <section class="screen" id="screen-reportes">
+      <div class="ph" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+        <div><div class="pt">Reporte técnico</div><div class="ps">Orden #SEN-2026-0601-047 · 01 Jun 2026</div></div>
+        <button class="btn bp" onclick="alert('PDF disponible en versión de producción.')"><i class="ti ti-download"></i>Descargar PDF</button>
+      </div>
+      <div class="rdoc">
+        <div class="rdh">
+          <div><div class="rdhl">SENATINOS</div><div class="rdhs">Mantenimiento automotriz premium · Lima · 39 años</div></div>
+          <div class="rdhr"><div class="rdho">Orden: <strong>#SEN-2026-0601-047</strong></div><div class="rdho">Fecha: <strong>01 Jun 2026</strong></div><div style="margin-top:8px"><span class="tag" style="background:rgba(255,255,255,.15);color:#fff">En proceso · 65%</span></div></div>
+        </div>
+        <div class="rdb">
+          <div class="g2 mb24">
+            <div><div class="rdst">Datos del vehículo</div><div class="rdr"><span class="rdk">Placa</span><span class="rdv" style="font-family:var(--fd);font-size:14px;letter-spacing:2px;color:var(--blue-d)">ABC-123</span></div><div class="rdr"><span class="rdk">Modelo</span><span class="rdv">Toyota Hilux 2021</span></div><div class="rdr"><span class="rdk">Motor</span><span class="rdv">2.8L Diésel 4-cil.</span></div><div class="rdr"><span class="rdk">Transmisión</span><span class="rdv">Automática 6V</span></div><div class="rdr"><span class="rdk">Kilometraje</span><span class="rdv">87,420 km</span></div><div class="rdr"><span class="rdk">VIN</span><span class="rdv" style="font-size:10px;font-family:monospace">MR0GX8CD5M0123456</span></div></div>
+            <div><div class="rdst">Datos del cliente</div><div class="rdr"><span class="rdk">Cliente</span><span class="rdv">Carlos López Mendoza</span></div><div class="rdr"><span class="rdk">DNI</span><span class="rdv">43219876</span></div><div class="rdr"><span class="rdk">Teléfono</span><span class="rdv">+51 987 654 321</span></div><div class="rdr"><span class="rdk">Técnico</span><span class="rdv">Ing. José Ramos</span></div><div class="rdr"><span class="rdk">Bahía</span><span class="rdv">Bahía 3 · Diésel</span></div><div class="rdr"><span class="rdk">Entrega est.</span><span class="rdv" style="color:var(--blue)">05 Jun · 10 am</span></div></div>
+          </div>
+          <div class="mb24"><div class="rdst">Diagnóstico técnico</div><div style="background:var(--g50);border-left:3px solid var(--blue);border-radius:0 var(--r2) var(--r2) 0;padding:12px 14px;font-size:12px;color:var(--g500);line-height:1.7">Bosch KTS 560 registró código <strong style="color:var(--g700)">P0401</strong> (EGR insuficiente). Pastillas delanteras críticas (15%). Aceite degradado. Motor, caja y combustible sin fallas.</div></div>
+          <div class="mb24">
+            <div class="rdst">Trabajos y repuestos</div>
+            <table class="dt">
+              <thead><tr><th>#</th><th>Descripción</th><th>Marca</th><th>Cant.</th><th class="tr">Total</th></tr></thead>
+              <tbody>
+                <tr><td style="color:var(--g300)">01</td><td>Filtro de aceite</td><td style="color:var(--g400)">MANN HU612/2X</td><td>1</td><td class="tr">S/ 85</td></tr>
+                <tr><td style="color:var(--g300)">02</td><td>Aceite 5W-30 sintético</td><td style="color:var(--g400)">Castrol EDGE</td><td>5L</td><td class="tr">S/ 210</td></tr>
+                <tr><td style="color:var(--g300)">03</td><td>Pastillas freno del.</td><td style="color:var(--g400)">Brembo P56080</td><td>1 jgo</td><td class="tr">S/ 380</td></tr>
+                <tr><td style="color:var(--g300)">04</td><td>Diagnóstico electrónico</td><td style="color:var(--g400)">Bosch KTS 560</td><td>1h</td><td class="tr">S/ 150</td></tr>
+                <tr><td style="color:var(--g300)">05</td><td>MO pastillas + aceite</td><td style="color:var(--g400)">—</td><td>2.5h</td><td class="tr">S/ 420</td></tr>
+              </tbody>
+              <tfoot>
+                <tr><td colspan="4" style="font-size:11px;padding:7px 10px;color:var(--g400)">Subtotal + IGV 18%</td><td class="tr" style="padding:7px 10px;color:var(--g400)">S/ 1,469.10</td></tr>
+                <tr><td colspan="4" style="font-size:13px;font-weight:700;padding:10px;color:var(--blue-d)">TOTAL</td><td class="tr" style="font-family:var(--fd);font-size:18px;font-weight:800;color:var(--blue-d);padding:10px">S/ 1,469.10</td></tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="mb24"><div class="rdst">Garantía</div><div class="gc"><i class="ti ti-shield-check"></i><div><div class="gct">6 meses o 10,000 km — lo primero</div><div class="gcs">Cubre repuestos y mano de obra. No aplica a daños por uso inadecuado.</div></div></div></div>
+          <div class="mb24"><div class="rdst">Observaciones</div><div class="oi do"><i class="ti ti-alert-triangle" style="color:var(--er)"></i><div class="oi-t">Revisar pastillas traseras en próxima visita. Vida útil estimada: 40%.</div></div><div class="oi wo"><i class="ti ti-info-circle" style="color:var(--wa)"></i><div class="oi-t">Batería al 68% de capacidad. Reemplazo recomendado antes de Dic 2026.</div></div><div class="oi oo"><i class="ti ti-circle-check" style="color:var(--ok)"></i><div class="oi-t">Motor en excelente estado. Próximo mantenimiento mayor: 100,000 km.</div></div></div>
+          <div style="padding-top:16px;border-top:1px solid var(--g100);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><div style="font-size:10px;color:var(--g300)">SENATINOS · Av. Industriales 2450, Lima · +51 1 234-5678</div><div style="font-size:10px;color:var(--g300)">SENA360 · 02 Jun 2026</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ ASISTENTE ══════════════════════ -->
+    <section class="screen" id="screen-asistente">
+      <div class="ph"><div class="pt">Asistente de Mantenimiento</div><div class="ps" id="mant-sub">Recomendaciones preventivas · ABC-123 · Toyota Hilux 2021</div></div>
+      <div class="mb-banner">
+        <div class="mbi"><i class="ti ti-tool"></i></div>
+        <div><div class="mbt">Tu vehículo está al día</div><div class="mbs">Salud general: 92/100 · Próxima acción en 2,580 km</div></div>
+        <div style="margin-left:auto;text-align:right"><div style="font-family:var(--fd);font-size:42px;font-weight:800;color:#fff;line-height:1">92</div><div style="font-size:10px;color:rgba(255,255,255,.65);letter-spacing:1.5px;text-transform:uppercase">Salud</div></div>
+      </div>
+      <div class="sl mb12">Alertas activas</div>
+      <div class="ac2 cr"><div class="aci" style="background:var(--er-lt);color:var(--er)"><i class="ti ti-brake"></i></div><div class="f1"><div class="act">Revisión de frenos delanteros</div><div class="acm">Pastillas al 15%. En proceso de corrección en este servicio.</div></div><div class="acr"><span class="tag td">Urgente</span></div></div>
+      <div class="ac2 ug"><div class="aci" style="background:var(--wa-lt);color:var(--wa)"><i class="ti ti-battery-charging"></i></div><div class="f1"><div class="act">Batería · Revisar antes de Dic 2026</div><div class="acm">Capacidad al 68%. Rendimiento aceptable, próximo al límite.</div></div><div class="acr"><div class="ackm">68%</div><div class="ackl">capacidad</div></div></div>
+      <div class="ac2 ok2 mb20"><div class="aci" style="background:var(--ok-lt);color:var(--ok)"><i class="ti ti-oil"></i></div><div class="f1"><div class="act">Próximo cambio de aceite</div><div class="acm">Se recomienda realizarlo en <strong>2,580 km</strong> (90,000 km · est. Julio 2026).</div></div><div class="acr"><div class="ackm">2,580</div><div class="ackl">km restantes</div></div></div>
+      <div class="sl mb12">Calendario preventivo</div>
+      <div class="msg3 mb20">
+        <div class="msc"><div class="msi" style="color:var(--wa)"><i class="ti ti-oil"></i></div><div class="msn">Cambio de aceite</div><div class="msw">En 2,580 km · Jul 2026</div><div class="msb"><div class="msbf" style="width:74%;background:var(--wa)"></div></div></div>
+        <div class="msc"><div class="msi" style="color:var(--g400)"><i class="ti ti-filter"></i></div><div class="msn">Filtros aire/combustible</div><div class="msw">En 12,580 km · Ene 2027</div><div class="msb"><div class="msbf" style="width:30%;background:var(--ok)"></div></div></div>
+        <div class="msc"><div class="msi" style="color:var(--er)"><i class="ti ti-brake"></i></div><div class="msn">Frenos traseros</div><div class="msw">En 5,000 km · Sep 2026</div><div class="msb"><div class="msbf" style="width:58%;background:var(--wa)"></div></div></div>
+        <div class="msc"><div class="msi" style="color:var(--g400)"><i class="ti ti-tire"></i></div><div class="msn">Rotación neumáticos</div><div class="msw">En 2,580 km · Jul 2026</div><div class="msb"><div class="msbf" style="width:74%;background:var(--wa)"></div></div></div>
+        <div class="msc"><div class="msi" style="color:var(--wa)"><i class="ti ti-battery-charging"></i></div><div class="msn">Reemplazo batería</div><div class="msw">En 6 meses · Dic 2026</div><div class="msb"><div class="msbf" style="width:50%;background:var(--wa)"></div></div></div>
+        <div class="msc"><div class="msi" style="color:var(--g400)"><i class="ti ti-engine"></i></div><div class="msn">Revisión mayor motor</div><div class="msw">En 12,580 km · Ene 2027</div><div class="msb"><div class="msbf" style="width:20%;background:var(--ok)"></div></div></div>
+      </div>
+      <div class="tip-bar"><i class="ti ti-bulb"></i><div><div class="tip-t">Recomendación Senatinos</div><div class="tip-s">Realizar el próximo mantenimiento preventivo completo a los <strong>90,000 km</strong>. Incluirá cambio de aceite, filtros, revisión de frenos traseros y rotación de neumáticos. Agenda tu cita con anticipación para prioridad de atención.</div></div></div>
+    </section>
+
+    <!-- ══════════════════════ CENTRO DE ATENCIÓN ══════════════════════ -->
+    <section class="screen" id="screen-atencion">
+      <div class="ch"><div class="cht">Centro de Atención Senatinos</div><div class="chs">Atención rápida y personalizada</div><div class="chh"><i class="ti ti-clock"></i>Lun–Sáb · 8:00 am – 6:00 pm</div></div>
+      <div class="acards">
+        <div class="acard acard-b" onclick="alert('Marcando +51 1 234-5678…')"><div class="acardi"><i class="ti ti-phone"></i></div><div class="acardt">Llamar ahora</div><div class="acards2">+51 1 234-5678</div></div>
+        <div class="acard acard-b" onclick="alert('Abriendo correo…')"><div class="acardi"><i class="ti ti-mail"></i></div><div class="acardt">Enviar correo</div><div class="acards2">servicios@senatinos.com.pe</div></div>
+        <div class="acard acard-g" onclick="alert('Solicitud enviada.')"><div class="acardi"><i class="ti ti-user-check"></i></div><div class="acardt">Solicitar asesor</div><div class="acards2">Te contactamos hoy</div></div>
+        <div class="acard acard-w" onclick="alert('Agenda disponible en producción.')"><div class="acardi"><i class="ti ti-calendar-plus"></i></div><div class="acardt">Agendar cita</div><div class="acards2">Reserva en línea</div></div>
+      </div>
+      <div class="cig">
+        <div class="cic"><div class="cih"><i class="ti ti-map-pin"></i><div class="cit">Dirección y horarios</div></div><div class="cib"><strong>Sede principal:</strong> Av. Industriales 2450, Lima<br><strong>Lunes–Viernes:</strong> 8:00 am – 6:00 pm<br><strong>Sábados:</strong> 8:00 am – 2:00 pm</div></div>
+        <div class="cic"><div class="cih"><i class="ti ti-phone"></i><div class="cit">Contacto directo</div></div><div class="cib"><strong>Teléfono:</strong> +51 1 234-5678<br><strong>Móvil:</strong> +51 987 654 321<br><strong>Email:</strong> servicios@senatinos.com.pe</div></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bnav"><div class="bni">
+  <button class="bn active" onclick="go('dashboard',null);sbn(this)"><i class="ti ti-dashboard"></i>Inicio</button>
+  <button class="bn" onclick="go('vehiculos',null);sbn(this)"><i class="ti ti-car"></i>Vehículos</button>
+  <button class="bn" onclick="go('seguimiento',null);sbn(this)"><i class="ti ti-timeline"></i>Seguim.</button>
+  <button class="bn" onclick="go('asistente',null);sbn(this)"><i class="ti ti-tool"></i>Asistente</button>
+  <button class="bn" onclick="go('atencion',null);sbn(this)"><i class="ti ti-headset"></i>Atención</button>
+</div></nav>
+
+<script>
+// ── DATA ──
+var vehicles = [
+  {
+    plate:'ABC-123', model:'Toyota Hilux 2021', fullModel:'Toyota Hilux 2021 · 2.8L Diésel · Automático',
+    eng:'2.8L Diésel 4-cil.', trans:'Automática 6V',
+    km:'87,420 km', nextMaint:'90,000 km', health:92, healthNum:92,
+    statusLabel:'En servicio activo', statusTag:'tw', statusText:'Reparación activa',
+    pct:'65%', pctNum:65, eta:'05 Jun',
+    tech:'Ing. Ramos', techFull:'Ing. José Ramos', alert:'Frenos',
+    img:'https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=1400&q=80',
+    history:[
+      {title:'Mantenimiento correctivo + frenos',date:'01 Jun 2026',km:'87,420 km',tech:'Ing. Ramos',cost:'S/ 1,469'},
+      {title:'Mantenimiento preventivo 80,000 km',date:'12 Feb 2026',km:'80,100 km',tech:'Tec. Herrera',cost:'S/ 920'},
+      {title:'Reparación suspensión delantera',date:'08 Oct 2025',km:'74,320 km',tech:'Ing. Ramos',cost:'S/ 1,380'},
+      {title:'Mantenimiento preventivo 70,000 km',date:'15 Jun 2025',km:'70,050 km',tech:'Tec. Herrera',cost:'S/ 780'}
+    ],
+    recs:[
+      {icon:'ti-brake',color:'er',title:'Revisar sistema de frenos traseros',sub:'Est. 92,000 km'},
+      {icon:'ti-steering-wheel',color:'wa',title:'Programar alineamiento y balanceo',sub:'Cada 10,000 km'},
+      {icon:'ti-tire',color:'wa',title:'Verificar desgaste de neumáticos',sub:'Último cambio: 65,000 km'},
+      {icon:'ti-battery-charging',color:'wa',title:'Evaluar reemplazo de batería',sub:'Capacidad: 68% · Dic 2026'}
+    ]
+  },
+  {
+    plate:'XYZ-789', model:'Nissan NP300 2022', fullModel:'Nissan NP300 2022 · 2.5L Diésel · Manual',
+    eng:'2.5L Diésel 4-cil.', trans:'Manual 6V',
+    km:'45,120 km', nextMaint:'50,000 km', health:97, healthNum:97,
+    statusLabel:'Vehículo operativo', statusTag:'tg', statusText:'Operativo',
+    pct:'—', pctNum:0, eta:'—',
+    tech:'Sin servicio activo', techFull:'Sin técnico asignado', alert:'Ninguna',
+    img:'https://images.unsplash.com/photo-1571987502227-9231b837d92a?w=1400&q=80',
+    history:[
+      {title:'Mantenimiento preventivo 40,000 km',date:'10 Mar 2026',km:'40,050 km',tech:'Tec. Herrera',cost:'S/ 680'},
+      {title:'Diagnóstico de rutina',date:'15 Nov 2025',km:'35,200 km',tech:'Tec. Herrera',cost:'S/ 150'},
+      {title:'Mantenimiento preventivo 30,000 km',date:'20 Jun 2025',km:'30,100 km',tech:'Ing. Ramos',cost:'S/ 620'},
+      {title:'Cambio de frenos delanteros',date:'05 Feb 2025',km:'26,400 km',tech:'Ing. Ramos',cost:'S/ 480'}
+    ],
+    recs:[
+      {icon:'ti-oil',color:'wa',title:'Cambio de aceite en 5,000 km',sub:'Est. 50,000 km · Sep 2026'},
+      {icon:'ti-filter',color:'b',title:'Cambio de filtros en revisión 50k',sub:'Est. 50,000 km'},
+      {icon:'ti-tire',color:'b',title:'Rotación de neumáticos',sub:'Programar próxima visita'},
+      {icon:'ti-steering-wheel',color:'b',title:'Alineamiento preventivo',sub:'Recomendado cada 10,000 km'}
+    ]
+  }
+];
+var currentV = 0;
+
+function selectV(idx, card) {
+  currentV = idx;
+  var v = vehicles[idx];
+
+  // cards UI
+  document.querySelectorAll('.vcard').forEach(function(c){ c.classList.remove('sel'); });
+  card.classList.add('sel');
+
+  // update label
+  document.getElementById('vd-label').textContent = 'Ficha del vehículo seleccionado — ' + v.plate;
+
+  // hero
+  document.getElementById('vdp-img').src = v.img;
+  document.getElementById('vdp-plate').textContent = v.plate;
+  document.getElementById('vdp-model').textContent = v.fullModel;
+  var stEl = document.getElementById('vdp-status');
+  stEl.textContent = v.statusLabel;
+  stEl.className = 'tag ' + v.statusTag;
+
+  // tech specs
+  document.getElementById('vc-plate').textContent = v.plate;
+  document.getElementById('vc-model').textContent = v.model;
+  document.getElementById('vc-eng').textContent = v.eng;
+  document.getElementById('vc-trans').textContent = v.trans;
+  document.getElementById('vc-km').textContent = v.km;
+  document.getElementById('vc-next').textContent = v.nextMaint;
+
+  // health ring
+  var circumference = 2 * Math.PI * 40; // 251.3
+  var offset = circumference * (1 - v.healthNum / 100);
+  document.querySelector('#vd-panel svg circle:nth-child(2)').setAttribute('stroke-dashoffset', offset.toFixed(1));
+  document.getElementById('vc-health-num').textContent = v.healthNum;
+
+  // history
+  var hEl = document.getElementById('vc-history');
+  hEl.innerHTML = v.history.map(function(h){
+    return '<div class="hlast-item"><div class="hli-dot"></div><div style="flex:1"><div class="hli-title">'+h.title+'</div><div class="hli-meta">'+h.date+' · '+h.km+' · '+h.tech+'</div></div><div class="hli-cost">'+h.cost+'</div></div>';
+  }).join('');
+
+  // recs
+  var colorMap = {er:'var(--er)',wa:'var(--wa)',b:'var(--blue)',ok:'var(--ok)'};
+  var bgMap    = {er:'var(--er-lt)',wa:'var(--wa-lt)',b:'var(--blue-lt)',ok:'var(--ok-lt)'};
+  var rEl = document.getElementById('vc-recs');
+  rEl.innerHTML = v.recs.map(function(r){
+    return '<div class="rec-item"><div class="rec-ico" style="background:'+bgMap[r.color]+';color:'+colorMap[r.color]+'"><i class="ti '+r.icon+'"></i></div><div><div class="rec-msg">'+r.title+'</div><div class="rec-sub">'+r.sub+'</div></div></div>';
+  }).join('');
+
+  // sidebar chip
+  document.getElementById('sb-plate').textContent = v.plate;
+  document.getElementById('sb-model').textContent = v.model;
+  document.getElementById('sb-status').textContent = v.statusText;
+
+  // dashboard sync
+  document.getElementById('dash-img').src = v.img;
+  document.getElementById('d-plate').textContent = v.plate;
+  document.getElementById('d-model').textContent = v.fullModel;
+  document.getElementById('d-km').textContent = v.km;
+  document.getElementById('d-tech').textContent = v.tech;
+  document.getElementById('d-next').textContent = v.nextMaint;
+  document.getElementById('d-pct').textContent = v.pct;
+  document.getElementById('d-bar').style.width = v.pctNum + '%';
+  document.getElementById('d-eta').textContent = v.eta;
+  document.getElementById('d-m1').textContent = v.pct;
+  document.getElementById('d-m2').textContent = v.healthNum+'/100';
+  document.getElementById('d-m3').textContent = v.eta;
+  document.getElementById('d-m4').textContent = v.alert;
+  document.getElementById('d-statuslbl').textContent = v.statusLabel;
+  document.getElementById('d-techname').textContent = v.techFull;
+
+  // historial / reportes / seguimiento / asistente sub-titles
+  document.getElementById('hist-sub').textContent = v.plate+' · '+v.model+' · '+v.history.length+' servicios registrados';
+  document.getElementById('seg-sub').textContent = v.plate+' · '+v.model;
+  document.getElementById('mant-sub').textContent = 'Recomendaciones preventivas · '+v.plate+' · '+v.model;
+
+  // animate panel
+  var p = document.getElementById('vd-panel');
+  p.style.opacity = '0'; p.style.transform = 'translateY(8px)';
+  setTimeout(function(){ p.style.transition = 'opacity .3s ease, transform .3s ease'; p.style.opacity = '1'; p.style.transform = 'translateY(0)'; }, 10);
+}
+
+// ── NAVIGATION ──
+function go(id, el) {
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById('screen-'+id).classList.add('active');
+  document.querySelectorAll('.ni').forEach(function(n){ n.classList.remove('active'); });
+  if (el) {
+    el.classList.add('active');
+  } else {
+    var f = document.querySelector('.ni[data-s="'+id+'"]');
+    if (f) f.classList.add('active');
+  }
+  if (window.innerWidth <= 860) {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sbOv').classList.remove('open');
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function sbn(el){
+  document.querySelectorAll('.bn').forEach(function(b){b.classList.remove('active')});
+  el.classList.add('active');
+}
+function hf(el){
+  document.querySelectorAll('.hf').forEach(function(b){b.classList.remove('active')});
+  el.classList.add('active');
+}
+
+// ── EVIDENCIAS LIGHTBOX ──
+var evSVGs = [
+  // 0: Recepción
+  `<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:480px;display:block"><defs><linearGradient id="lbsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a3a5c"/><stop offset="100%" stop-color="#2d6491"/></linearGradient></defs><rect width="900" height="400" fill="url(#lbsky)"/><rect x="200" y="30" width="500" height="340" rx="6" fill="#0d2136"/><rect x="212" y="40" width="476" height="322" rx="4" fill="#0a1a2e"/><rect x="0" y="340" width="900" height="60" fill="#222"/><rect x="260" y="346" width="380" height="5" rx="2" fill="#f5c518" opacity=".5"/><ellipse cx="340" cy="60" rx="24" ry="8" fill="#fff9c4" opacity=".7"/><ellipse cx="560" cy="60" rx="24" ry="8" fill="#fff9c4" opacity=".7"/><line x1="340" y1="40" x2="340" y2="60" stroke="#ccc" stroke-width="2"/><line x1="560" y1="40" x2="560" y2="60" stroke="#ccc" stroke-width="2"/><rect x="310" y="72" width="280" height="34" rx="5" fill="#005AA9" opacity=".85"/><text x="450" y="94" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="700" fill="white" letter-spacing="2">RECEPCIÓN DE VEHÍCULO</text><g transform="translate(90,190)"><rect x="20" y="30" width="165" height="70" rx="5" fill="#1e4a7a"/><rect x="25" y="35" width="155" height="62" rx="3" fill="#1a3f6a"/><rect x="175" y="12" width="200" height="88" rx="10" fill="#1e4a7a"/><rect x="190" y="18" width="115" height="50" rx="6" fill="#7fc4e8" opacity=".85"/><line x1="247" y1="18" x2="247" y2="68" stroke="#4a9cc0" stroke-width="1.5" opacity=".6"/><rect x="177" y="8" width="196" height="7" rx="3" fill="#2a5a8a"/><rect x="370" y="40" width="120" height="60" rx="7" fill="#1e4a7a"/><rect x="482" y="52" width="22" height="38" rx="4" fill="#0d1f33"/><ellipse cx="496" cy="58" rx="9" ry="6" fill="#fff9c4" opacity=".9"/><rect x="20" y="98" width="470" height="14" rx="4" fill="#0d1f33"/><circle cx="95" cy="126" r="34" fill="#1a1a1a"/><circle cx="95" cy="126" r="25" fill="#333"/><circle cx="95" cy="126" r="15" fill="#555"/><circle cx="95" cy="126" r="6" fill="#888"/><circle cx="400" cy="126" r="34" fill="#1a1a1a"/><circle cx="400" cy="126" r="25" fill="#333"/><circle cx="400" cy="126" r="15" fill="#555"/><circle cx="400" cy="126" r="6" fill="#888"/></g><g transform="translate(660,150)"><ellipse cx="25" cy="18" rx="16" ry="17" fill="#4a7fa8"/><rect x="11" y="32" width="28" height="60" rx="6" fill="#2d5a7a"/><rect x="37" y="40" width="24" height="34" rx="3" fill="#e8e0d0"/><rect x="39" y="44" width="20" height="2.5" rx="1" fill="#555"/><rect x="39" y="51" width="20" height="2.5" rx="1" fill="#555"/><rect x="39" y="58" width="15" height="2.5" rx="1" fill="#555"/><rect x="11" y="92" width="12" height="38" rx="3" fill="#2d5a7a"/><rect x="27" y="92" width="12" height="38" rx="3" fill="#2d5a7a"/></g><rect x="0" y="360" width="900" height="40" fill="rgba(0,0,0,.6)"/><text x="20" y="386" font-family="monospace" font-size="14" fill="#aad4f5">30 MAY 2026 · 08:30 AM · INGRESO REGISTRADO · Tec. GONZÁLEZ ✓</text></svg>`,
+  // 1: Diagnóstico
+  `<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:480px;display:block"><defs><linearGradient id="lbbg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0d1f2e"/><stop offset="100%" stop-color="#1a3a52"/></linearGradient></defs><rect width="900" height="400" fill="url(#lbbg2)"/><rect x="0" y="300" width="900" height="100" fill="#111"/><rect x="0" y="298" width="900" height="8" fill="#222"/><rect x="300" y="120" width="260" height="170" rx="10" fill="#111" stroke="#555" stroke-width="2.5"/><rect x="310" y="130" width="240" height="150" rx="5" fill="#0a1628"/><rect x="314" y="134" width="232" height="24" rx="3" fill="#005AA9" opacity=".9"/><text x="430" y="150" text-anchor="middle" font-family="monospace" font-size="11" fill="white" font-weight="700">BOSCH KTS 560 · DIAGNÓSTICO</text><text x="318" y="172" font-family="monospace" font-size="10" fill="#ff5555">● P0401  EGR FLOW INSUFFICIENT</text><text x="318" y="188" font-family="monospace" font-size="10" fill="#ffaa00">● B0023  BRAKE PAD WEAR 15%</text><text x="318" y="204" font-family="monospace" font-size="10" fill="#55ff55">✓ P0001  ENGINE — NO FAULT</text><text x="318" y="220" font-family="monospace" font-size="10" fill="#55ff55">✓ P0700  TRANS — NO FAULT</text><text x="318" y="236" font-family="monospace" font-size="10" fill="#aaaaaa">─────────────────────────────</text><text x="318" y="252" font-family="monospace" font-size="10" fill="#aaaaaa">TOTAL: 2 CODES · ODO 87,320 KM</text><rect x="285" y="288" width="290" height="14" rx="4" fill="#222" stroke="#333" stroke-width="1.5"/><rect x="160" y="228" width="70" height="44" rx="6" fill="#1a1a1a" stroke="#666" stroke-width="2.5"/><rect x="165" y="233" width="60" height="34" rx="4" fill="#0d2a3d"/><text x="195" y="253" text-anchor="middle" font-family="monospace" font-size="9" fill="#55aaff">OBD2</text><text x="195" y="265" text-anchor="middle" font-family="monospace" font-size="7" fill="#6688aa">SCANNER</text><path d="M230,250 Q 295,255 320,250" stroke="#777" stroke-width="4" fill="none" stroke-dasharray="6 3"/><rect x="100" y="238" width="64" height="26" rx="4" fill="#2a2a2a" stroke="#555" stroke-width="1.5"/><text x="132" y="255" text-anchor="middle" font-family="monospace" font-size="9" fill="#888">OBD PORT</text><ellipse cx="440" cy="215" rx="120" ry="65" fill="#005AA9" opacity=".05"/><rect x="0" y="360" width="900" height="40" fill="rgba(0,0,0,.65)"/><text x="20" y="386" font-family="monospace" font-size="14" fill="#aad4f5">30 MAY 2026 · 11:15 AM · TALLER BAHÍA 1 · Tec. HERRERA · P0401 DETECTADO</text></svg>`,
+  // 2: Frenos
+  `<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:480px;display:block"><defs><radialGradient id="lbdisc" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#5a5a5a"/><stop offset="60%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#111"/></radialGradient></defs><rect width="900" height="400" fill="#1c1c1c"/><rect x="0" y="340" width="900" height="60" fill="#111"/><circle cx="380" cy="185" r="150" fill="url(#lbdisc)" stroke="#555" stroke-width="3"/><circle cx="380" cy="185" r="128" fill="none" stroke="#444" stroke-width="18" stroke-dasharray="8 14"/><circle cx="380" cy="185" r="72" fill="#1a1a1a" stroke="#555" stroke-width="3"/><circle cx="380" cy="185" r="50" fill="#111" stroke="#444" stroke-width="2"/><circle cx="380" cy="147" r="10" fill="#555" stroke="#333" stroke-width="2"/><circle cx="414" cy="165" r="10" fill="#555" stroke="#333" stroke-width="2"/><circle cx="346" cy="165" r="10" fill="#555" stroke="#333" stroke-width="2"/><line x1="340" y1="75" x2="360" y2="102" stroke="#666" stroke-width="2" opacity=".6"/><line x1="328" y1="90" x2="348" y2="114" stroke="#555" stroke-width="1.5" opacity=".4"/><line x1="412" y1="265" x2="432" y2="290" stroke="#666" stroke-width="2" opacity=".5"/><circle cx="380" cy="185" r="155" fill="none" stroke="#880000" stroke-width="2.5" stroke-dasharray="10 5" opacity=".5"/><g transform="translate(580,80)"><rect width="110" height="120" rx="8" fill="#1a1a1a" stroke="#555" stroke-width="2"/><rect x="5" y="5" width="100" height="110" rx="6" fill="#222" stroke="#444" stroke-width="1.5"/><circle cx="12" cy="22" r="7" fill="#444" stroke="#333"/><circle cx="12" cy="98" r="7" fill="#444" stroke="#333"/><circle cx="98" cy="22" r="7" fill="#444" stroke="#333"/><circle cx="98" cy="98" r="7" fill="#444" stroke="#333"/><rect x="16" y="30" width="78" height="60" rx="4" fill="#8b1a1a" stroke="#cc2222" stroke-width="2.5"/><rect x="20" y="34" width="70" height="18" rx="3" fill="#cc3333"/><text x="55" y="46" text-anchor="middle" font-family="monospace" font-size="9" fill="white" font-weight="700">15% VIDA ÚTIL</text><text x="55" y="57" text-anchor="middle" font-family="monospace" font-size="8" fill="#ffaaaa">MUY DESGASTADA</text><rect x="20" y="55" width="70" height="9" rx="2" fill="#888"/><text x="55" y="64" text-anchor="middle" font-family="monospace" font-size="6" fill="#ff8888">METAL EXPUESTO</text></g><rect x="600" y="88" width="60" height="14" rx="3" fill="#cc0000" opacity=".8"/><text x="630" y="99" text-anchor="middle" font-family="sans-serif" font-size="8" font-weight="700" fill="white">CALIPER</text><g transform="translate(60,160)"><rect y="0" width="140" height="14" rx="2" fill="#888" stroke="#666" stroke-width="1.5"/><rect y="0" width="52" height="28" rx="3" fill="#777" stroke="#555" stroke-width="1"/><rect x="114" y="0" width="28" height="28" rx="2" fill="#777" stroke="#555" stroke-width="1"/><rect x="24" y="12" width="2.5" height="22" fill="#555"/><rect x="128" y="12" width="2.5" height="22" fill="#555"/><rect x="52" y="-30" width="68" height="25" rx="4" fill="#1a3a1a" stroke="#3a7a3a" stroke-width="1.5"/><text x="86" y="-13" text-anchor="middle" font-family="monospace" font-size="11" fill="#44ff44">2.1 mm</text><text x="86" y="-3" text-anchor="middle" font-family="monospace" font-size="7" fill="#88aa88">ESPESOR MÍNIMO</text></g><rect x="30" y="308" width="260" height="30" rx="5" fill="#cc2222" opacity=".9"/><text x="160" y="328" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="white">⚠ PASTILLAS CRÍTICAS 15%</text><rect x="610" y="308" width="250" height="30" rx="5" fill="#1a4a1a" opacity=".9"/><text x="735" y="328" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#55ff55">✓ DISCO: EN LÍMITE</text><rect x="0" y="360" width="900" height="40" fill="rgba(0,0,0,.65)"/><text x="20" y="386" font-family="monospace" font-size="14" fill="#aad4f5">01 JUN 2026 · 09:00 AM · INSPECCIÓN FRENOS DELANTEROS · Ing. RAMOS</text></svg>`,
+  // 3: Motor
+  `<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:480px;display:block"><defs><linearGradient id="lbbg4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0f1a0f"/><stop offset="100%" stop-color="#1a2a1a"/></linearGradient><linearGradient id="lbeng" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#1a1a1a"/></linearGradient></defs><rect width="900" height="400" fill="url(#lbbg4)"/><rect x="80" y="30" width="740" height="330" rx="14" fill="#1e1e1e" stroke="#444" stroke-width="2.5"/><rect x="230" y="70" width="400" height="220" rx="10" fill="url(#lbeng)" stroke="#555" stroke-width="2"/><rect x="248" y="88" width="364" height="96" rx="7" fill="#2a2a2a" stroke="#666" stroke-width="2"/><circle cx="268" cy="104" r="7" fill="#555" stroke="#333"/><circle cx="612" cy="104" r="7" fill="#555" stroke="#333"/><circle cx="268" cy="174" r="7" fill="#555" stroke="#333"/><circle cx="612" cy="174" r="7" fill="#555" stroke="#333"/><circle cx="440" cy="104" r="7" fill="#555" stroke="#333"/><circle cx="440" cy="174" r="7" fill="#555" stroke="#333"/><text x="440" y="140" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#888" letter-spacing="1">MOTOR 2.8L DIÉSEL · 4 CILINDROS</text><g transform="translate(140,95)"><rect width="74" height="52" rx="6" fill="#3a1a1a" stroke="#cc4444" stroke-width="2.5"/><circle cx="37" cy="26" r="14" fill="#cc4444" opacity=".75"/><text x="37" y="20" text-anchor="middle" font-family="monospace" font-size="9" fill="white" font-weight="700">EGR</text><text x="37" y="31" text-anchor="middle" font-family="monospace" font-size="7" fill="#ff8888">CARBÓN ⚠</text><text x="37" y="46" text-anchor="middle" font-family="monospace" font-size="12" fill="#ff4444">⚠</text></g><path d="M215,120 Q 230,120 230,128" stroke="#888" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="630" y="80" width="136" height="80" rx="7" fill="#1a2a1a" stroke="#4a8a4a" stroke-width="2"/><text x="698" y="108" text-anchor="middle" font-family="monospace" font-size="10" fill="#55aa55" font-weight="700">FILTRO</text><text x="698" y="122" text-anchor="middle" font-family="monospace" font-size="10" fill="#55aa55">AIRE</text><text x="698" y="136" text-anchor="middle" font-family="monospace" font-size="9" fill="#aaaaaa">OK ✓</text><g transform="translate(330,208)"><circle r="26" fill="#2a1a0a" stroke="#cc8800" stroke-width="2.5"/><text x="0" y="5" text-anchor="middle" font-family="monospace" font-size="9" fill="#cc8800" font-weight="700">ACEITE</text><text x="0" y="17" text-anchor="middle" font-family="monospace" font-size="8" fill="#ff8800">BAJO ⚠</text></g><g transform="translate(490,200)"><rect x="-30" y="-18" width="58" height="48" rx="5" fill="#0a1a3a" stroke="#3a7aaa" stroke-width="2"/><text x="0" y="-4" text-anchor="middle" font-family="monospace" font-size="9" fill="#55aaff" font-weight="700">REFRIGERANTE</text><text x="0" y="8" text-anchor="middle" font-family="monospace" font-size="8" fill="#55ff55">OK ✓</text><rect x="-24" y="14" width="48" height="12" rx="2" fill="#1a3a6a" opacity=".8"/></g><g transform="translate(630,198)"><rect x="-36" y="-22" width="74" height="52" rx="5" fill="#1a1a2a" stroke="#4a4a8a" stroke-width="2"/><text x="0" y="-8" text-anchor="middle" font-family="monospace" font-size="9" fill="#8888ff" font-weight="700">BATERÍA</text><text x="0" y="5" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffaa00">68% ⚠</text><circle cx="-18" cy="22" r="7" fill="#cc2222"/><text x="-18" y="26" text-anchor="middle" font-size="9" fill="white">+</text><circle cx="18" cy="22" r="7" fill="#333"/><text x="18" y="26" text-anchor="middle" font-size="9" fill="white">−</text></g><ellipse cx="200" cy="252" rx="20" ry="12" fill="#c8a882" opacity=".75"/><rect x="150" y="248" width="36" height="10" rx="5" fill="#888" opacity=".7"/><path d="M168,242 Q 240,200 330,185" stroke="#fffde7" stroke-width="2.5" opacity=".2" fill="none"/><ellipse cx="330" cy="183" rx="40" ry="26" fill="#fffde7" opacity=".1"/><rect x="0" y="360" width="900" height="40" fill="rgba(0,0,0,.65)"/><text x="20" y="386" font-family="monospace" font-size="14" fill="#aad4f5">01 JUN 2026 · 10:00 AM · INSPECCIÓN MOTOR 2.8L DIÉSEL · Ing. RAMOS</text></svg>`,
+  // 4: Repuestos
+  `<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:480px;display:block"><defs><linearGradient id="lbbg5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a1208"/><stop offset="100%" stop-color="#2a1e0a"/></linearGradient><linearGradient id="lbbench" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5a3a1a"/><stop offset="100%" stop-color="#3a2010"/></linearGradient></defs><rect width="900" height="400" fill="url(#lbbg5)"/><rect x="0" y="295" width="900" height="105" fill="url(#lbbench)"/><rect x="0" y="292" width="900" height="8" fill="#7a5a2a"/><g transform="translate(80,110)"><rect width="175" height="128" rx="7" fill="#cc0000"/><rect x="5" y="5" width="165" height="118" rx="6" fill="#dd1111"/><rect x="12" y="12" width="151" height="38" rx="4" fill="#aa0000"/><text x="87" y="36" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="900" fill="white" letter-spacing="3">BREMBO</text><text x="87" y="64" text-anchor="middle" font-family="monospace" font-size="11" fill="#ffdddd">BRAKE PADS</text><text x="87" y="80" text-anchor="middle" font-family="monospace" font-size="12" fill="white" font-weight="700">P56080</text><text x="87" y="98" text-anchor="middle" font-family="monospace" font-size="10" fill="#ffaaaa">Toyota Hilux 2021</text><rect x="112" y="10" width="55" height="20" rx="4" fill="#00aa44"/><text x="139" y="24" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="white">NUEVO ✓</text><rect y="128" width="175" height="10" rx="5" fill="#000" opacity=".3"/></g><g transform="translate(360,80)"><rect x="18" y="0" width="88" height="26" rx="10" fill="#1a1a1a"/><rect x="0" y="23" width="124" height="176" rx="12" fill="#cc6600"/><rect x="6" y="27" width="112" height="166" rx="10" fill="#dd7700"/><rect x="10" y="44" width="104" height="92" rx="6" fill="white"/><text x="62" y="65" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="900" fill="#cc3300" letter-spacing="1">CASTROL</text><text x="62" y="82" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="900" fill="#003388">EDGE</text><text x="62" y="98" text-anchor="middle" font-family="monospace" font-size="10" fill="#333">5W-30 Full Synth.</text><text x="62" y="112" text-anchor="middle" font-family="monospace" font-size="10" fill="#555">5 LITROS</text><text x="62" y="126" text-anchor="middle" font-family="monospace" font-size="9" fill="#888">LONGLIFE III</text><rect x="12" y="148" width="100" height="14" rx="3" fill="#eeeeee" stroke="#ccc" stroke-width="1"/><rect x="12" y="148" width="96" height="14" rx="3" fill="#cc6600" opacity=".6"/><text x="62" y="160" text-anchor="middle" font-family="monospace" font-size="8" fill="#333">● SELLADO · ORIG.</text><rect y="198" width="124" height="10" rx="5" fill="#000" opacity=".25"/></g><g transform="translate(620,100)"><ellipse cx="72" cy="15" rx="64" ry="15" fill="#cc7700"/><rect x="8" y="12" width="128" height="138" fill="#dd8800"/><ellipse cx="72" cy="150" rx="64" ry="15" fill="#bb6600"/><rect x="14" y="36" width="116" height="86" fill="white"/><text x="72" y="60" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="900" fill="#cc5500" letter-spacing="1">MANN</text><text x="72" y="76" text-anchor="middle" font-family="monospace" font-size="10" fill="#333">OIL FILTER</text><text x="72" y="94" text-anchor="middle" font-family="monospace" font-size="13" font-weight="700" fill="#003388">HU612/2X</text><text x="72" y="110" text-anchor="middle" font-family="monospace" font-size="9" fill="#888">Toyota/Nissan Diesel</text><polygon points="54,132 90,132 98,142 90,152 54,152 46,142" fill="#aa5500" stroke="#cc6600" stroke-width="1.5"/><text x="72" y="146" text-anchor="middle" font-family="monospace" font-size="8" fill="#ffcc88">3/4&quot;-16 UNF</text><rect y="162" width="144" height="10" rx="5" fill="#000" opacity=".25"/></g><text x="168" y="102" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#44ff44">✓</text><text x="422" y="72" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#44ff44">✓</text><text x="692" y="92" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#44ff44">✓</text><rect x="0" y="360" width="900" height="40" fill="rgba(0,0,0,.65)"/><text x="20" y="386" font-family="monospace" font-size="14" fill="#aad4f5">01 JUN 2026 · 11:00 AM · REPUESTOS INSTALADOS Y VERIFICADOS · Ing. RAMOS</text></svg>`,
+  // 5: Entrega
+  `<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:480px;display:block"><defs><linearGradient id="lbbg6" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a1f0a"/><stop offset="100%" stop-color="#1a3a1a"/></linearGradient><linearGradient id="lbhilux" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2255aa"/><stop offset="100%" stop-color="#1a3a7a"/></linearGradient></defs><rect width="900" height="400" fill="url(#lbbg6)"/><rect x="0" y="315" width="900" height="85" fill="#1a2a1a"/><rect x="0" y="312" width="900" height="7" fill="#2a4a2a"/><rect x="120" y="318" width="660" height="4" rx="2" fill="#3a8a3a" opacity=".5"/><g transform="translate(60,160)"><rect x="22" y="32" width="188" height="80" rx="7" fill="url(#lbhilux)"/><rect x="28" y="37" width="178" height="70" rx="5" fill="#1e4a8a"/><rect x="28" y="37" width="178" height="18" rx="3" fill="#1a3a7a"/><rect x="202" y="12" width="238" height="100" rx="12" fill="url(#lbhilux)"/><rect x="220" y="18" width="134" height="56" rx="7" fill="#9dd8f5" opacity=".9"/><line x1="287" y1="18" x2="287" y2="74" stroke="#7ab8d8" stroke-width="2" opacity=".7"/><rect x="202" y="8" width="236" height="9" rx="4" fill="#2255aa"/><rect x="436" y="44" width="152" height="68" rx="9" fill="url(#lbhilux)"/><rect x="576" y="58" width="28" height="44" rx="5" fill="#0d1f33"/><line x1="576" y1="68" x2="604" y2="68" stroke="#3a6aaa" stroke-width="2.5"/><line x1="576" y1="78" x2="604" y2="78" stroke="#3a6aaa" stroke-width="2.5"/><line x1="576" y1="88" x2="604" y2="88" stroke="#3a6aaa" stroke-width="2.5"/><ellipse cx="592" cy="60" rx="11" ry="7" fill="#fff9c4"/><ellipse cx="592" cy="60" rx="7" ry="5" fill="#fffde7"/><ellipse cx="294" cy="14" rx="74" ry="6" fill="white" opacity=".15"/><rect x="22" y="110" width="568" height="16" rx="5" fill="#0d1f33"/><circle cx="106" cy="140" r="40" fill="#1a1a1a"/><circle cx="106" cy="140" r="30" fill="#2a2a2a"/><circle cx="106" cy="140" r="20" fill="#888" opacity=".7"/><circle cx="106" cy="140" r="9" fill="#aaa"/><ellipse cx="96" cy="130" rx="6" ry="4" fill="white" opacity=".3" transform="rotate(-30 96 130)"/><circle cx="480" cy="140" r="40" fill="#1a1a1a"/><circle cx="480" cy="140" r="30" fill="#2a2a2a"/><circle cx="480" cy="140" r="20" fill="#888" opacity=".7"/><circle cx="480" cy="140" r="9" fill="#aaa"/><ellipse cx="470" cy="130" rx="6" ry="4" fill="white" opacity=".3" transform="rotate(-30 470 130)"/></g><g transform="translate(650,50)"><rect width="210" height="245" rx="10" fill="#0d1f0d" stroke="#2a6a2a" stroke-width="2.5"/><rect x="5" y="5" width="200" height="235" rx="8" fill="#0f230f"/><rect x="5" y="5" width="200" height="38" rx="8" fill="#1a4a1a"/><text x="105" y="20" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#55ff55" letter-spacing="1">CONTROL DE CALIDAD</text><text x="105" y="33" text-anchor="middle" font-family="monospace" font-size="9" fill="#aaaaaa">ABC-123 · 05 Jun 2026</text><text x="20" y="62" font-family="monospace" font-size="11" fill="#55ff55">✓ Frenos delanteros</text><text x="20" y="80" font-family="monospace" font-size="11" fill="#55ff55">✓ Cambio de aceite</text><text x="20" y="98" font-family="monospace" font-size="11" fill="#55ff55">✓ Filtro de aceite</text><text x="20" y="116" font-family="monospace" font-size="11" fill="#55ff55">✓ Purga de frenos</text><text x="20" y="134" font-family="monospace" font-size="11" fill="#55ff55">✓ Limpieza EGR</text><text x="20" y="152" font-family="monospace" font-size="11" fill="#55ff55">✓ Prueba de ruta</text><text x="20" y="170" font-family="monospace" font-size="11" fill="#55ff55">✓ Limpieza exterior</text><line x1="10" y1="184" x2="200" y2="184" stroke="#2a5a2a" stroke-width="1.5"/><text x="105" y="202" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="700" fill="#44ff44">7/7 APROBADO</text><text x="105" y="235" text-anchor="middle" font-family="sans-serif" font-size="36" fill="#44ff44">✓</text></g><rect x="80" y="52" width="300" height="48" rx="9" fill="#1a4a1a" stroke="#3a8a3a" stroke-width="2"/><text x="230" y="72" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#55ff55" letter-spacing="1">🏁 LISTO PARA ENTREGA</text><text x="230" y="88" text-anchor="middle" font-family="monospace" font-size="11" fill="#aaaaaa">05 Jun 2026 · 10:00 AM · ABC-123</text><rect x="0" y="360" width="900" height="40" fill="rgba(0,0,0,.65)"/><text x="20" y="386" font-family="monospace" font-size="14" fill="#aad4f5">05 JUN 2026 · 10:00 AM · ENTREGA PENDIENTE · QC SUPERVISOR</text></svg>`
+];
+var evData = [
+  {tag:'01 · Recepción',title:'Recepción del vehículo',meta:'30 May 2026 · 08:30 am · Tec. González',status:'tg',statusTxt:'Completado',desc:'Registro de ingreso al taller. Check-in visual 360° del estado exterior e interior del vehículo antes de cualquier intervención.',obs:'Vehículo recibido en buen estado general. Odómetro: 87,320 km. Ruido leve al frenar reportado por cliente. Aceite bajo nivel.'},
+  {tag:'02 · Diagnóstico',title:'Diagnóstico electrónico Bosch KTS 560',meta:'30 May 2026 · 11:15 am · Tec. Herrera',status:'tg',statusTxt:'Completado',desc:'Técnico conectando escáner automotriz al puerto OBD2. Escaneo completo del sistema electrónico para lectura de códigos de falla.',obs:'Código P0401 detectado (EGR insuficiente). Pastillas al 15% de vida útil. Aceite degradado confirmado. Motor y caja sin fallas críticas.'},
+  {tag:'03 · Frenos',title:'Inspección del sistema de frenos',meta:'01 Jun 2026 · 09:00 am · Ing. Ramos',status:'tg',statusTxt:'Completado',desc:'Desmontaje y medición de discos y pastillas delanteras. Comparación con especificaciones técnicas Toyota para el modelo 2021.',obs:'Pastillas delanteras con 15% de vida útil — reemplazo inmediato. Discos en límite mínimo permitido. Sistema de purga necesario.'},
+  {tag:'04 · Motor',title:'Inspección del compartimiento de motor',meta:'01 Jun 2026 · 10:00 am · Ing. Ramos',status:'tg',statusTxt:'Completado',desc:'Revisión completa del motor 2.8L diésel 4-cilindros: nivel de fluidos, estado de mangueras, correa de distribución, filtros y válvula EGR.',obs:'Motor en excelente estado general. Aceite degradado (reemplazar). Válvula EGR con acumulación de carbón. Mangueras y correa OK.'},
+  {tag:'05 · Repuestos',title:'Instalación de repuestos certificados',meta:'01 Jun 2026 · 11:00 am · Ing. Ramos',status:'tw',statusTxt:'En proceso',desc:'Piezas nuevas originales verificadas: Pastillas Brembo P56080, aceite Castrol EDGE 5W-30 sintético 5L y filtro MANN HU612/2X.',obs:'Repuestos originales con código QR de autenticidad verificado. Pastillas instaladas, sistema purgado y calibrado en banco de prueba.'},
+  {tag:'06 · Entrega',title:'Vehículo listo para entrega',meta:'05 Jun 2026 · 10:00 am · QC Supervisor',status:'tgr',statusTxt:'Pendiente',desc:'Fotografía final del vehículo post-servicio, limpieza interior y exterior, control de calidad y prueba de ruta completada.',obs:'Pendiente de control de calidad final y prueba de ruta. Estimado: 05 Jun 2026 — 10:00 am.'}
+];
+var lbIdx = 0;
+function openLightbox(idx) {
+  lbIdx = idx;
+  renderLb();
+  var ov = document.getElementById('lb-overlay');
+  ov.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (!e || e.target === document.getElementById('lb-overlay')) {
+    document.getElementById('lb-overlay').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+function lbPrev() { lbIdx = (lbIdx - 1 + evData.length) % evData.length; renderLb(); }
+function lbNext() { lbIdx = (lbIdx + 1) % evData.length; renderLb(); }
+function renderLb() {
+  var d = evData[lbIdx];
+  // inject the SVG directly into the image container
+  var imgContainer = document.getElementById('lb-img-wrap');
+  imgContainer.innerHTML = evSVGs[lbIdx];
+  document.getElementById('lb-tag').textContent = d.tag;
+  document.getElementById('lb-title').textContent = d.title;
+  document.getElementById('lb-meta').innerHTML = d.meta.split(' · ').map(function(m){return '<span style="display:flex;align-items:center;gap:4px"><i class="ti ti-point" style="font-size:10px"></i>'+m+'</span>';}).join('');
+  var st = document.getElementById('lb-status');
+  st.textContent = d.statusTxt; st.className = 'tag '+d.status;
+  document.getElementById('lb-desc').textContent = d.desc;
+  document.getElementById('lb-obs').textContent = d.obs;
+  var dots = document.getElementById('lb-dots');
+  dots.innerHTML = evData.map(function(x,i){return '<div style="width:'+(i===lbIdx?'20px':'8px')+';height:8px;border-radius:4px;background:'+(i===lbIdx?'var(--blue)':'var(--g200)')+';transition:.3s;cursor:pointer" onclick="openLightbox('+i+')"></div>';}).join('');
+}
+document.addEventListener('keydown',function(e){
+  if(document.getElementById('lb-overlay').style.display==='flex'){
+    if(e.key==='ArrowLeft') lbPrev();
+    if(e.key==='ArrowRight') lbNext();
+    if(e.key==='Escape') closeLightbox({target:document.getElementById('lb-overlay')});
+  }
+});
+
+// ── FILTRO EVIDENCIAS ──
+function filterEv(btn, stage) {
+  document.querySelectorAll('.ev-filter').forEach(function(b){
+    b.style.background='var(--white)';b.style.borderColor='var(--g200)';b.style.color='var(--g500)';
+  });
+  btn.style.background='var(--blue)';btn.style.borderColor='var(--blue)';btn.style.color='#fff';
+  document.querySelectorAll('#ev-gallery .ev-card').forEach(function(card){
+    if(stage==='all'||card.dataset.stage===stage){
+      card.style.display='';
+    } else {
+      card.style.display='none';
+    }
+  });
+}
+
+// ── HAMBURGER ──
+document.getElementById('menuBtn').addEventListener('click',function(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sbOv').classList.toggle('open');
+});
+document.getElementById('sbOv').addEventListener('click',function(){
+  document.getElementById('sidebar').classList.remove('open');
+  this.classList.remove('open');
+});
+</script>
+</body>
+</html>
